@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[Preview copy] FYP Tracker | Smart Final Year Project Management</title>
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>
+  // Brand colours. Change them here and the whole site changes.
+  tailwind.config = { theme: { extend: { colors: { brand: '#0b6b4f', ink: '#1d2a24', paper: '#f5f6f2' } } } }
+</script>
+
+<!-- Our own reusable styles. Change "card" once and every card changes. -->
+<style type="text/tailwindcss">
+  @layer components {
+    .card  { @apply bg-white border border-stone-200 rounded-lg p-4 md:p-5 mb-5; }
+    .btn   { @apply px-4 py-2 rounded bg-brand text-white font-medium hover:bg-emerald-800; }
+    .btn-amber { @apply bg-amber-600 hover:bg-amber-700; }
+    .btn-red   { @apply bg-red-700 hover:bg-red-800; }
+    .btn-line  { @apply px-4 py-2 rounded border border-stone-300 font-medium hover:bg-stone-100; }
+    .inp   { @apply mt-1 w-full rounded border border-stone-300 bg-white px-3 py-2; }
+    .lbl   { @apply block text-sm text-ink/70; }
+    .h1    { @apply text-2xl md:text-3xl font-bold mb-5; }
+    .h2    { @apply text-lg font-bold; }
+    .stat  { @apply bg-white border border-stone-200 rounded-lg p-4; }
+    .stat b { @apply block text-3xl; }
+    .stat span { @apply text-sm text-ink/60; }
+    .tbl th { @apply py-2 pr-3 font-medium text-ink/60 text-left; }
+    .tbl td { @apply py-2 pr-3 align-top border-t border-stone-100; }
+    .side-btn { @apply w-full text-left px-3 py-2 rounded hover:bg-white/10; }
+    .nav-link { @apply px-3 py-2 rounded text-ink/80 hover:text-brand; }
+  }
+</style>
+</head>
+
+<body class="bg-paper text-ink antialiased">
+
+<!-- The project logo (drawn once, used in many places with <use href="#logo">) -->
+<svg style="display:none">
+  <symbol id="logo" viewBox="0 0 32 32">
+    <rect width="32" height="32" rx="8" fill="#0b6b4f"/>
+    <rect x="7" y="17" width="4" height="8" rx="1" fill="#fff"/>
+    <rect x="14" y="12" width="4" height="13" rx="1" fill="#fff"/>
+    <rect x="21" y="7" width="4" height="18" rx="1" fill="#6ee7b7"/>
+  </symbol>
+</svg>
+
+
+<!-- =====================================================
+     SCREEN 1: HOME (landing page)
+     ===================================================== -->
+<div id="home" class="screen">
+
+  <!-- Navbar: logo on the left, links in the middle, Login button on the right -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-stone-200">
+    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+      <a href="#top" class="flex items-center gap-2">
+        <svg class="w-9 h-9"><use href="#logo"/></svg>
+        <span class="font-bold text-lg leading-none">FYP Tracker<small class="block text-[10px] font-normal text-ink/50">Smart Project Management</small></span>
+      </a>
+      <nav class="hidden md:flex items-center gap-1">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#how" class="nav-link">How it works</a>
+        <a href="#roles" class="nav-link">Who uses it</a>
+      </nav>
+      <div class="flex items-center gap-2">
+        <button data-screen="login" class="btn">Login</button>
+        <!-- Menu button (phones only) -->
+        <button data-act="hmenu" class="md:hidden px-3 py-2 text-xl" aria-label="Open menu">&#9776;</button>
+      </div>
+    </div>
+    <!-- Phone menu (hidden until the button is pressed) -->
+    <nav id="mnav" class="hidden md:hidden border-t border-stone-200 px-4 py-2 flex-col">
+      <a href="#features" data-act="hmenu" class="nav-link block">Features</a>
+      <a href="#how" data-act="hmenu" class="nav-link block">How it works</a>
+      <a href="#roles" data-act="hmenu" class="nav-link block">Who uses it</a>
+    </nav>
+  </header>
+
+  <!-- Hero: big headline on the left, preview card on the right -->
+  <section id="top" class="max-w-6xl mx-auto px-4 py-12 md:py-20 grid md:grid-cols-2 gap-10 items-center">
+    <div>
+      <span class="inline-block px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-medium">Built for final year students and supervisors</span>
+      <h1 class="mt-4 text-4xl md:text-5xl font-bold leading-tight">From topic approval to final defence, <span class="text-brand">all in one place.</span></h1>
+      <p class="mt-4 text-lg text-ink/70 max-w-lg">No more WhatsApp lists, paper notice boards and lost emails. Get a supervisor, submit your topic, track milestones and see right away if you are on track.</p>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <button data-screen="login" class="btn">Login to your account</button>
+        <a href="#features" class="btn-line">See features</a>
+      </div>
+      <div class="mt-8 flex gap-8 text-sm text-ink/70">
+        <div><b class="block text-2xl text-ink">3</b>User roles</div>
+        <div><b class="block text-2xl text-ink">1</b>Central platform</div>
+        <div><b class="block text-2xl text-ink">24/7</b>Access</div>
+      </div>
+    </div>
+
+    <!-- Preview card (just a picture of what the system looks like) -->
+    <div class="bg-white border border-stone-200 rounded-2xl shadow-lg p-5">
+      <div class="flex justify-between items-start gap-2">
+        <div><div class="font-bold">Online Result Verification System</div><div class="text-sm text-ink/60">Ibrahim Sani, Dr. Musa Danladi</div></div>
+        <span class="px-2 py-0.5 rounded text-xs font-medium bg-sky-100 text-sky-800 whitespace-nowrap">On Track</span>
+      </div>
+      <div class="mt-5 space-y-4 text-sm">
+        <div><div class="flex justify-between"><span>Chapters 1 to 3</span><span class="text-ink/60">100%</span></div><div class="mt-1 h-2 bg-stone-200 rounded"><div class="h-2 rounded bg-brand" style="width:100%"></div></div></div>
+        <div><div class="flex justify-between"><span>System design</span><span class="text-ink/60">60%</span></div><div class="mt-1 h-2 bg-stone-200 rounded"><div class="h-2 rounded bg-brand" style="width:60%"></div></div></div>
+        <div><div class="flex justify-between"><span>Implementation</span><span class="text-ink/60">35%</span></div><div class="mt-1 h-2 bg-stone-200 rounded"><div class="h-2 rounded bg-brand" style="width:35%"></div></div></div>
+      </div>
+      <div class="mt-5 p-3 rounded bg-stone-50 border border-stone-200 text-sm"><b>Supervisor feedback:</b> Chapter 3 is clear. Start the database design early.</div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="bg-white border-y border-stone-200">
+    <div class="max-w-6xl mx-auto px-4 py-14">
+      <h2 class="text-3xl font-bold">Everything your project needs</h2>
+      <p class="mt-2 text-ink/70 max-w-xl">Replace scattered messages with one clear system.</p>
+      <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="p-5 rounded-lg border border-stone-200"><div class="w-9 h-9 rounded bg-emerald-100 text-brand font-bold grid place-items-center">1</div><h3 class="mt-3 font-bold">Supervisor assignment</h3><p class="mt-1 text-sm text-ink/70">The coordinator assigns supervisors in the system. Students see their supervisor right away.</p></div>
+        <div class="p-5 rounded-lg border border-stone-200"><div class="w-9 h-9 rounded bg-emerald-100 text-brand font-bold grid place-items-center">2</div><h3 class="mt-3 font-bold">Topic submission and review</h3><p class="mt-1 text-sm text-ink/70">Submit a topic, get approved, rejected or asked to revise, with clear feedback each time.</p></div>
+        <div class="p-5 rounded-lg border border-stone-200"><div class="w-9 h-9 rounded bg-emerald-100 text-brand font-bold grid place-items-center">3</div><h3 class="mt-3 font-bold">Milestones and deadlines</h3><p class="mt-1 text-sm text-ink/70">Supervisors set milestones with deadlines. Students update their progress as they work.</p></div>
+        <div class="p-5 rounded-lg border border-stone-200"><div class="w-9 h-9 rounded bg-emerald-100 text-brand font-bold grid place-items-center">4</div><h3 class="mt-3 font-bold">Smart progress status</h3><p class="mt-1 text-sm text-ink/70">The system compares expected and actual progress and shows On Track, Ahead or Behind Schedule.</p></div>
+        <div class="p-5 rounded-lg border border-stone-200"><div class="w-9 h-9 rounded bg-emerald-100 text-brand font-bold grid place-items-center">5</div><h3 class="mt-3 font-bold">Documents and feedback</h3><p class="mt-1 text-sm text-ink/70">Upload project documents and receive supervisor comments in the same place.</p></div>
+        <div class="p-5 rounded-lg border border-stone-200"><div class="w-9 h-9 rounded bg-emerald-100 text-brand font-bold grid place-items-center">6</div><h3 class="mt-3 font-bold">Notifications</h3><p class="mt-1 text-sm text-ink/70">Get told when a supervisor is assigned, a topic is reviewed, or new feedback arrives.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how" class="max-w-6xl mx-auto px-4 py-14">
+    <h2 class="text-3xl font-bold">How it works</h2>
+    <ol class="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <li class="p-5 bg-white rounded-lg border border-stone-200"><b class="text-brand text-2xl">01</b><h3 class="font-bold mt-1">Get a supervisor</h3><p class="text-sm text-ink/70 mt-1">The coordinator assigns you one.</p></li>
+      <li class="p-5 bg-white rounded-lg border border-stone-200"><b class="text-brand text-2xl">02</b><h3 class="font-bold mt-1">Submit your topic</h3><p class="text-sm text-ink/70 mt-1">Your supervisor reviews it and gives feedback.</p></li>
+      <li class="p-5 bg-white rounded-lg border border-stone-200"><b class="text-brand text-2xl">03</b><h3 class="font-bold mt-1">Work on milestones</h3><p class="text-sm text-ink/70 mt-1">Update progress and upload documents.</p></li>
+      <li class="p-5 bg-white rounded-lg border border-stone-200"><b class="text-brand text-2xl">04</b><h3 class="font-bold mt-1">Stay on track</h3><p class="text-sm text-ink/70 mt-1">See your status and act early if you fall behind.</p></li>
+    </ol>
+  </section>
+
+  <!-- Roles -->
+  <section id="roles" class="bg-ink text-white">
+    <div class="max-w-6xl mx-auto px-4 py-14">
+      <h2 class="text-3xl font-bold">Made for three users</h2>
+      <div class="mt-8 grid md:grid-cols-3 gap-4">
+        <div class="p-5 rounded-lg bg-white/5 border border-white/10"><h3 class="font-bold text-lg">Student</h3><p class="mt-2 text-sm text-white/70">See your supervisor, submit topics, update milestones, upload documents and read feedback.</p></div>
+        <div class="p-5 rounded-lg bg-white/5 border border-white/10"><h3 class="font-bold text-lg">Supervisor</h3><p class="mt-2 text-sm text-white/70">Review topics, create milestones, monitor progress and give feedback to your students.</p></div>
+        <div class="p-5 rounded-lg bg-white/5 border border-white/10"><h3 class="font-bold text-lg">Project Coordinator</h3><p class="mt-2 text-sm text-white/70">Manage student and supervisor records, assign supervisors and view all projects.</p></div>
+      </div>
+      <button data-screen="login" class="mt-8 px-5 py-2 rounded bg-white text-ink font-medium hover:bg-stone-100">Login to get started</button>
+    </div>
+  </section>
+
+  <footer class="max-w-6xl mx-auto px-4 py-6 text-sm text-ink/60 flex flex-wrap justify-between gap-2">
+    <span>FYP Tracker, Department of Software Engineering</span><span>Final year project prototype</span>
+  </footer>
+</div>
+
+
+<!-- =====================================================
+     SCREEN 2: LOGIN
+     ===================================================== -->
+<div id="login" class="screen hidden">
+<div class="min-h-screen md:grid md:grid-cols-2">
+
+  <!-- Left panel (desktop only): branding and what each role can do -->
+  <section class="hidden md:flex bg-ink text-white p-12 flex-col justify-between">
+    <a data-screen="home" href="#" class="flex items-center gap-2 font-bold text-lg"><svg class="w-9 h-9"><use href="#logo"/></svg>FYP Tracker</a>
+    <div>
+      <h1 class="text-4xl font-bold leading-tight">Welcome back.</h1>
+      <p class="mt-3 text-white/70 max-w-sm">Log in to open your dashboard. What you see depends on your role.</p>
+      <ul class="mt-6 space-y-3 text-sm text-white/80">
+        <li><b class="text-white">Student:</b> submit topics, update milestones, read feedback.</li>
+        <li><b class="text-white">Supervisor:</b> review topics, set milestones, monitor progress.</li>
+        <li><b class="text-white">Coordinator:</b> manage records and assign supervisors.</li>
+      </ul>
+    </div>
+    <p class="text-xs text-white/50">Department of Software Engineering</p>
+  </section>
+
+  <!-- Right panel: the login form -->
+  <section class="p-6 md:p-14 flex flex-col justify-center">
+    <div class="md:hidden flex items-center justify-between mb-8">
+      <a data-screen="home" href="#" class="flex items-center gap-2 font-bold"><svg class="w-8 h-8"><use href="#logo"/></svg>FYP Tracker</a>
+      <button data-screen="home" class="btn-line !py-1 text-sm">Home</button>
+    </div>
+    <div class="w-full max-w-sm mx-auto">
+      <h2 class="text-2xl font-bold">Log in</h2>
+      <p class="text-sm text-ink/60 mt-1 mb-5">Use the email and password given to you.</p>
+      <!-- Wrong login message appears here -->
+      <p id="login-error" class="hidden mb-3 px-3 py-2 rounded bg-red-50 border border-red-200 text-sm text-red-800"></p>
+      <form data-form="login" class="space-y-3">
+        <label class="lbl">Email<input id="l-email" name="email" type="email" required autocomplete="username" class="inp"></label>
+        <label class="lbl">Password
+          <span class="relative block"><input id="l-pass" name="password" type="password" required autocomplete="current-password" class="inp pr-16">
+          <button type="button" data-act="showpass" class="absolute right-2 top-1/2 -translate-y-1/2 mt-0.5 text-xs text-brand underline">Show</button></span>
+        </label>
+        <button class="btn w-full">Log in</button>
+      </form>
+      <div class="mt-6 text-sm text-ink/70 border-t border-stone-200 pt-4">
+        <p>Demo accounts (password: demo1234). Tap one to fill the form:</p>
+        <div class="flex flex-wrap gap-2 mt-2">
+          <button type="button" data-act="fill" data-e="coordinator@buk.edu.ng" class="btn-line !py-1 text-sm">Coordinator</button>
+          <button type="button" data-act="fill" data-e="supervisor@buk.edu.ng" class="btn-line !py-1 text-sm">Supervisor</button>
+          <button type="button" data-act="fill" data-e="student@buk.edu.ng" class="btn-line !py-1 text-sm">Student</button>
+        </div>
+        <button data-act="reset" class="mt-3 text-xs underline">Reset demo data</button>
+      </div>
+    </div>
+  </section>
+</div>
+</div>
+
+
+<!-- =====================================================
+     SCREEN 3: DASHBOARD (sidebar + pages for each role)
+     ===================================================== -->
+<div id="dashboard" class="screen hidden">
+ <div class="md:flex min-h-screen">
+
+  <!-- Top bar for phones -->
+  <header class="md:hidden flex items-center justify-between bg-ink text-white px-4 py-3">
+    <span class="flex items-center gap-2 font-bold"><svg class="w-7 h-7"><use href="#logo"/></svg>FYP Tracker</span>
+    <button data-act="menu" class="px-3 py-1 text-xl" aria-label="Open menu">&#9776;</button>
+  </header>
+
+  <!-- Sidebar -->
+  <aside id="side" class="hidden md:flex flex-col w-full md:w-60 shrink-0 bg-ink text-white p-4 gap-1 md:sticky md:top-0 md:h-screen">
+    <div class="hidden md:flex items-center gap-2 font-bold text-lg mb-1"><svg class="w-8 h-8"><use href="#logo"/></svg>FYP Tracker</div>
+    <div id="who" class="text-xs text-white/60 mb-4"></div>
+
+    <nav data-role="coordinator" class="hidden flex-col gap-1">
+      <button data-go="c-dash" class="side-btn">Dashboard</button>
+      <button data-go="c-students" class="side-btn">Students</button>
+      <button data-go="c-sups" class="side-btn">Supervisors</button>
+      <button data-go="c-assign" class="side-btn">Assign supervisor</button>
+    </nav>
+    <nav data-role="supervisor" class="hidden flex-col gap-1">
+      <button data-go="s-dash" class="side-btn">Dashboard</button>
+      <button data-go="s-topics" class="side-btn">Topic review</button>
+      <button data-go="s-projects" class="side-btn">Projects</button>
+      <button data-go="notes" class="side-btn">Notifications <span class="unread"></span></button>
+    </nav>
+    <nav data-role="student" class="hidden flex-col gap-1">
+      <button data-go="st-dash" class="side-btn">Dashboard</button>
+      <button data-go="st-topic" class="side-btn">My topic</button>
+      <button data-go="st-work" class="side-btn">Milestones and files</button>
+      <button data-go="notes" class="side-btn">Notifications <span class="unread"></span></button>
+    </nav>
+
+    <button data-act="logout" class="side-btn md:mt-auto text-white/70">Log out</button>
+  </aside>
+
+  <main class="flex-1 min-w-0 p-4 md:p-8 max-w-5xl w-full">
+
+    <!-- ========== COORDINATOR ========== -->
+    <section data-page="c-dash" class="hidden">
+      <h1 class="h1">Dashboard</h1>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
+        <div class="stat"><b id="n-students">0</b><span>Students</span></div>
+        <div class="stat"><b id="n-sups">0</b><span>Supervisors</span></div>
+        <div class="stat"><b id="n-assigned">0</b><span>Assigned</span></div>
+        <div class="stat"><b id="n-waiting">0</b><span>Waiting for a supervisor</span></div>
+      </div>
+      <div class="card"><h2 class="h2 mb-2">All projects</h2>
+        <div class="overflow-x-auto"><table class="tbl w-full text-sm"><thead><tr><th>Student</th><th>Supervisor</th><th>Topic</th><th>Progress</th></tr></thead><tbody id="c-projects"></tbody></table></div>
+      </div>
+    </section>
+
+    <section data-page="c-students" class="hidden">
+      <h1 class="h1">Students</h1>
+      <div class="card">
+        <form data-form="addStudent" class="grid sm:grid-cols-2 gap-3">
+          <label class="lbl">Full name<input name="name" required class="inp"></label>
+          <label class="lbl">Email<input name="email" type="email" required class="inp"></label>
+          <label class="lbl">Temporary password<input name="password" type="password" required class="inp"></label>
+          <label class="lbl">Department<input name="department" required class="inp" value="Software Engineering"></label>
+          <label class="lbl">Registration number<input name="reg_number" required class="inp"></label>
+          <label class="lbl">Level<input name="level" required class="inp" value="400"></label>
+          <button class="btn sm:col-span-2">Add student</button>
+        </form>
+      </div>
+      <div class="card overflow-x-auto"><table class="tbl w-full text-sm"><thead><tr><th>Name</th><th>Reg. number</th><th>Department</th><th></th></tr></thead><tbody id="students-body"></tbody></table></div>
+    </section>
+
+    <section data-page="c-sups" class="hidden">
+      <h1 class="h1">Supervisors</h1>
+      <div class="card">
+        <form data-form="addSupervisor" class="grid sm:grid-cols-2 gap-3">
+          <label class="lbl">Full name<input name="name" required class="inp"></label>
+          <label class="lbl">Email<input name="email" type="email" required class="inp"></label>
+          <label class="lbl">Temporary password<input name="password" type="password" required class="inp"></label>
+          <label class="lbl">Department<input name="department" required class="inp" value="Software Engineering"></label>
+          <label class="lbl">Staff ID<input name="staff_id" required class="inp"></label>
+          <button class="btn sm:col-span-2 self-end">Add supervisor</button>
+        </form>
+      </div>
+      <div class="card overflow-x-auto"><table class="tbl w-full text-sm"><thead><tr><th>Name</th><th>Staff ID</th><th>Department</th><th></th></tr></thead><tbody id="supervisors-body"></tbody></table></div>
+    </section>
+
+    <section data-page="c-assign" class="hidden">
+      <h1 class="h1">Assign supervisor</h1>
+      <div class="card">
+        <form data-form="assign" class="grid sm:grid-cols-3 gap-3 items-end">
+          <label class="lbl">Student<select id="as-student" name="student_id" required class="inp"></select></label>
+          <label class="lbl">Supervisor<select id="as-sup" name="supervisor_id" required class="inp"></select></label>
+          <button class="btn">Assign supervisor</button>
+        </form>
+      </div>
+      <div class="card"><h2 class="h2 mb-2">Current assignments</h2>
+        <div class="overflow-x-auto"><table class="tbl w-full text-sm"><thead><tr><th>Student</th><th>Supervisor</th><th>Assigned</th><th></th></tr></thead><tbody id="assign-body"></tbody></table></div>
+      </div>
+    </section>
+
+    <!-- ========== SUPERVISOR ========== -->
+    <section data-page="s-dash" class="hidden">
+      <h1 class="h1">Dashboard</h1>
+      <div class="grid grid-cols-3 gap-3 mb-5">
+        <div class="stat"><b id="n-mystudents">0</b><span>Students</span></div>
+        <div class="stat"><b id="n-topics">0</b><span>Topics to review</span></div>
+        <div class="stat"><b id="n-projects">0</b><span>Projects</span></div>
+      </div>
+      <div class="card overflow-x-auto"><table class="tbl w-full text-sm"><thead><tr><th>Student</th><th>Topic</th><th>Progress</th></tr></thead><tbody id="s-students"></tbody></table></div>
+    </section>
+
+    <section data-page="s-topics" class="hidden">
+      <h1 class="h1">Topic review</h1>
+      <div id="review-list"></div>
+      <div id="review-empty" class="card text-sm text-ink/60">No topics are waiting for review.</div>
+      <div class="card"><h2 class="h2 mb-2">Reviewed topics</h2>
+        <div class="overflow-x-auto"><table class="tbl w-full text-sm"><thead><tr><th>Student</th><th>Topic</th><th>Status</th><th>Reviewed</th></tr></thead><tbody id="reviewed-body"></tbody></table></div>
+      </div>
+    </section>
+
+    <section data-page="s-projects" class="hidden">
+      <h1 class="h1">Projects</h1>
+      <div id="p-list"></div>
+      <div id="p-empty" class="card text-sm text-ink/60">Projects appear here after you approve a student topic.</div>
+    </section>
+
+    <!-- ========== STUDENT ========== -->
+    <section data-page="st-dash" class="hidden">
+      <h1 class="h1" id="sd-welcome">Welcome</h1>
+      <div class="grid md:grid-cols-3 gap-4">
+        <div class="card mb-0"><div class="text-sm text-ink/60 mb-1">Supervisor</div><div class="h2" id="sd-sup"></div><div class="text-sm text-ink/60" id="sd-dept"></div></div>
+        <div class="card mb-0"><div class="text-sm text-ink/60 mb-1">Latest topic</div><div class="font-medium mb-2" id="sd-topic"></div><div id="sd-topic-badge"></div></div>
+        <div class="card mb-0"><div class="text-sm text-ink/60 mb-1">Project progress</div><div id="sd-prog-badge"></div>
+          <div class="mt-3 text-xs text-ink/60">Actual <span id="sd-actual-txt">0</span>%</div>
+          <div class="h-2 bg-stone-200 rounded"><div id="sd-actual-bar" class="h-2 rounded bg-brand" style="width:0%"></div></div>
+          <div class="mt-2 text-xs text-ink/60">Expected <span id="sd-exp-txt">0</span>%</div>
+          <div class="h-2 bg-stone-200 rounded"><div id="sd-exp-bar" class="h-2 rounded bg-stone-500" style="width:0%"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section data-page="st-topic" class="hidden">
+      <h1 class="h1">My topic</h1>
+      <div id="t-nosup" class="card hidden">Supervisor not yet assigned. You can submit a topic after the coordinator assigns one.</div>
+      <div id="t-formcard" class="card hidden">
+        <h2 class="h2 mb-3">Submit a project topic</h2>
+        <form data-form="submitTopic" class="space-y-3">
+          <label class="lbl">Topic title<input name="topic_title" required class="inp"></label>
+          <label class="lbl">Short description<textarea name="description" rows="3" required class="inp"></textarea></label>
+          <button class="btn">Submit topic</button>
+        </form>
+      </div>
+      <div id="t-list"></div>
+    </section>
+
+    <section data-page="st-work" class="hidden">
+      <h1 class="h1">Milestones and files</h1>
+      <div id="w-empty" class="card hidden">Milestones appear after your supervisor approves your topic and adds them.</div>
+      <div id="w-content" class="hidden">
+        <div class="card"><div class="flex flex-wrap justify-between gap-2 mb-2"><h2 class="h2" id="w-title"></h2><span id="w-badge"></span></div><div id="w-ms"></div></div>
+        <div class="card"><h2 class="h2 mb-2">Documents</h2><div id="w-docs" class="mb-3"></div>
+          <form data-form="upload" class="flex flex-col sm:flex-row gap-3"><input type="file" name="file" required class="flex-1 text-sm"><button class="btn">Upload document</button></form>
+        </div>
+        <div class="card"><h2 class="h2 mb-2">Supervisor feedback</h2><div id="w-fb"></div></div>
+      </div>
+    </section>
+
+    <!-- ========== NOTIFICATIONS (supervisor and student) ========== -->
+    <section data-page="notes" class="hidden">
+      <h1 class="h1">Notifications</h1>
+      <div class="card"><button data-act="readAll" class="text-sm text-brand underline mb-2">Mark all as read</button><div id="notes-list"></div></div>
+    </section>
+
+  </main>
+ </div>
+</div>
+
+
+<!-- =====================================================
+     TEMPLATES: designs that JavaScript copies for each item.
+     data-f="x"      -> text is replaced with the value x
+     data-badge="x"  -> coloured status label
+     data-w="x"      -> bar width in %
+     data-slot="x"   -> empty place where JS adds more items
+     ===================================================== -->
+
+<!-- One topic waiting for review (supervisor) -->
+<template id="tpl-review">
+  <div class="card">
+    <div class="flex flex-wrap justify-between gap-2"><h2 class="h2" data-f="topic_title"></h2><span data-badge="status"></span></div>
+    <p class="text-sm text-ink/60" data-f="meta"></p>
+    <p class="mt-2 text-sm" data-f="description"></p>
+    <form data-form="review" class="mt-3 space-y-3">
+      <label class="lbl">Feedback (required for Request revision and Reject)<textarea name="feedback" rows="3" class="inp"></textarea></label>
+      <div class="flex flex-wrap gap-2">
+        <button name="decision" value="Approved" class="btn">Approve</button>
+        <button name="decision" value="Revision Requested" class="btn btn-amber">Request revision</button>
+        <button name="decision" value="Rejected" class="btn btn-red">Reject</button>
+      </div>
+    </form>
+  </div>
+</template>
+
+<!-- One project (supervisor) -->
+<template id="tpl-project">
+  <div class="card">
+    <div class="flex flex-wrap items-center justify-between gap-2">
+      <div><h2 class="h2" data-f="project_title"></h2><p class="text-sm text-ink/60" data-f="student"></p></div>
+      <span data-badge="status"></span>
+    </div>
+    <div data-slot="ms"></div>
+    <form data-form="addMs" class="grid sm:grid-cols-3 gap-2 mt-3 items-end">
+      <label class="lbl">New milestone<input name="title" required class="inp"></label>
+      <label class="lbl">Deadline<input name="due_date" type="date" required class="inp"></label>
+      <button class="btn">Add milestone</button>
+    </form>
+    <h3 class="font-medium mt-5 mb-1">Documents</h3><div data-slot="docs"></div>
+    <h3 class="font-medium mt-5 mb-1">Feedback</h3><div data-slot="fb"></div>
+    <form data-form="addFb" class="mt-3 space-y-2">
+      <label class="lbl">Write feedback<textarea name="comment" rows="3" required class="inp"></textarea></label>
+      <button class="btn">Send feedback</button>
+    </form>
+  </div>
+</template>
+
+<!-- One milestone. The slider part (data-edit) is kept only for students -->
+<template id="tpl-ms">
+  <div class="py-3 border-t border-stone-100">
+    <div class="flex justify-between gap-2 text-sm"><b data-f="title"></b><span class="text-ink/60" data-f="due"></span></div>
+    <div class="mt-2 h-2 bg-stone-200 rounded"><div class="h-2 rounded bg-brand" data-w="progress"></div></div>
+    <div class="text-xs text-ink/60 mt-1" data-f="meta"></div>
+    <form data-edit data-form="setProgress" class="flex items-center gap-3 mt-2">
+      <input type="range" name="progress" min="0" max="100" step="5" class="flex-1" oninput="this.nextElementSibling.textContent=this.value+'%'">
+      <span class="w-10 text-sm"></span>
+      <button class="btn">Save</button>
+    </form>
+  </div>
+</template>
+
+<!-- One simple line: used for documents, feedback and notifications -->
+<template id="tpl-line">
+  <div class="py-2 border-t border-stone-100 text-sm"><span data-f="text"></span><div class="text-xs text-ink/50" data-f="date"></div></div>
+</template>
+
+<!-- One topic card (student). data-show parts are removed when not needed -->
+<template id="tpl-topic">
+  <div class="card">
+    <div class="flex flex-wrap justify-between gap-2"><h2 class="h2" data-f="topic_title"></h2><span data-badge="status"></span></div>
+    <p class="text-sm text-ink/60" data-f="meta"></p>
+    <p class="text-sm mt-2" data-f="description"></p>
+    <p data-show="feedback" class="mt-3 text-sm bg-stone-50 border border-stone-200 rounded p-3"><b>Supervisor feedback:</b> <span data-f="feedback"></span></p>
+    <form data-show="revision" data-form="resubmit" class="mt-3 space-y-3">
+      <label class="lbl">Topic title<input name="topic_title" required class="inp"></label>
+      <label class="lbl">Description<textarea name="description" rows="3" required class="inp"></textarea></label>
+      <button class="btn">Resubmit topic</button>
+    </form>
+  </div>
+</template>
+
+<div id="toast" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 flex flex-col gap-2 w-[92%] max-w-sm" aria-live="polite"></div>
+
+<script>
+/* data.js = the DATABASE of the prototype.
+   Everything is saved in the browser (localStorage), so refreshing keeps your data.
+   Later, only this file is replaced by Supabase. app.js will stay almost the same. */
+
+const day = n => new Date(Date.now() + n * 864e5).toISOString();   // today +/- n days
+const dept = "Software Engineering";
+
+// Starting data. All demo passwords: demo1234
+const SEED = {
+  users: [
+    { user_id: "u1", email: "coordinator@buk.edu.ng", password: "demo1234", role: "coordinator" },
+    { user_id: "u2", email: "supervisor@buk.edu.ng", password: "demo1234", role: "supervisor" },
+    { user_id: "u3", email: "supervisor2@buk.edu.ng", password: "demo1234", role: "supervisor" },
+    { user_id: "u4", email: "student@buk.edu.ng", password: "demo1234", role: "student" },
+    { user_id: "u5", email: "student2@buk.edu.ng", password: "demo1234", role: "student" },
+    { user_id: "u6", email: "student3@buk.edu.ng", password: "demo1234", role: "student" }
+  ],
+  coordinators: [{ coordinator_id: "c1", user_id: "u1", name: "Dr. Aisha Bello", staff_id: "SE/C/001", department: dept }],
+  supervisors: [
+    { supervisor_id: "sp1", user_id: "u2", name: "Dr. Musa Danladi", staff_id: "SE/S/014", department: dept },
+    { supervisor_id: "sp2", user_id: "u3", name: "Dr. Hauwa Garba", staff_id: "SE/S/022", department: dept }
+  ],
+  students: [
+    { student_id: "st1", user_id: "u4", name: "Ibrahim Sani", reg_number: "BUK/21/SEN/1001", department: dept, level: "400" },
+    { student_id: "st2", user_id: "u5", name: "Zainab Umar", reg_number: "BUK/21/SEN/1002", department: dept, level: "400" },
+    { student_id: "st3", user_id: "u6", name: "Abdullahi Lawal", reg_number: "BUK/21/SEN/1003", department: dept, level: "400" }
+  ],
+  supervisor_assignments: [
+    { assignment_id: "a1", student_id: "st1", supervisor_id: "sp1", assigned_at: day(-40), assignment_status: "Active" },
+    { assignment_id: "a2", student_id: "st2", supervisor_id: "sp1", assigned_at: day(-40), assignment_status: "Active" }
+  ],
+  topic_submissions: [
+    { submission_id: "t1", student_id: "st1", supervisor_id: "sp1", topic_title: "Online Result Verification System", description: "A web system for checking student results.", status: "Approved", supervisor_feedback: "Good topic.", submitted_at: day(-35), reviewed_at: day(-33) },
+    { submission_id: "t2", student_id: "st2", supervisor_id: "sp1", topic_title: "Hostel Allocation System", description: "Allocates hostel rooms to students online.", status: "Pending", supervisor_feedback: "", submitted_at: day(-1), reviewed_at: null }
+  ],
+  projects: [
+    { project_id: "p1", student_id: "st1", supervisor_id: "sp1", title: "Online Result Verification System", description: "A web system for checking student results.", status: "Active", created_at: day(-30) }
+  ],
+  milestones: [
+    { milestone_id: "m1", project_id: "p1", title: "Chapters 1 to 3", description: "", status: "Completed", progress: 100, due_date: day(-10) },
+    { milestone_id: "m2", project_id: "p1", title: "System design", description: "", status: "In Progress", progress: 60, due_date: day(15) },
+    { milestone_id: "m3", project_id: "p1", title: "Implementation", description: "", status: "In Progress", progress: 35, due_date: day(45) }
+  ],
+  progress: [],
+  documents: [],
+  feedback: [{ feedback_id: "f1", project_id: "p1", supervisor_id: "sp1", comment: "Chapter 3 is clear. Start the database design early.", created_at: day(-9) }],
+  notifications: []
+};
+
+// The name of the ID column in each table (same names as in supabase-schema.sql)
+const PK = { users: "user_id", students: "student_id", supervisors: "supervisor_id", coordinators: "coordinator_id", supervisor_assignments: "assignment_id", projects: "project_id", topic_submissions: "submission_id", milestones: "milestone_id", progress: "progress_id", documents: "document_id", feedback: "feedback_id", notifications: "notification_id" };
+
+// Some browsers block storage when a file is opened straight from the computer.
+// If that happens, the app still works, but the data is lost when you refresh.
+function safeStore(kind) {
+  try { const s = window[kind]; s.setItem("__t", "1"); s.removeItem("__t"); return s; }
+  catch (e) { const m = {}; return { getItem: k => m[k] ?? null, setItem: (k, v) => { m[k] = String(v); }, removeItem: k => { delete m[k]; } }; }
+}
+const LS = safeStore("localStorage"), SS = safeStore("sessionStorage");
+
+let mem = JSON.parse(LS.getItem("fyp_demo") || "null") || structuredClone(SEED);
+const save = () => LS.setItem("fyp_demo", JSON.stringify(mem));
+
+// The 4 functions app.js uses to talk to the database:
+const DB = {
+  // get("students")  or  get("students", { student_id: "st1" })
+  get(table, match = {}) { return mem[table].filter(r => Object.keys(match).every(k => r[k] === match[k])); },
+  // add("milestones", { title: "..." })  -> saves a new row and gives it an ID
+  add(table, row) { const r = { [PK[table]]: crypto.randomUUID(), ...row }; mem[table].push(r); save(); return r; },
+  // set("projects", id, { status: "Done" })  -> changes some fields of one row
+  set(table, id, patch) { Object.assign(mem[table].find(r => r[PK[table]] === id), patch); save(); },
+  // clears everything and starts again from SEED
+  reset() { LS.removeItem("fyp_demo"); location.reload(); }
+};
+
+</script>
+<script>
+/* app.js = the LOGIC. The design is in index.html, the data is in data.js.
+   Pattern: a function finds an element by its id and puts data inside it. */
+
+/* ---------- 1. Small helpers ---------- */
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const fmt = d => d ? new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : 'None';
+const now = () => new Date().toISOString();
+const setText = (id, v) => { $(id).textContent = v; };
+const newest = (a, b) => (b.submitted_at || '').localeCompare(a.submitted_at || '');
+const byDue = (a, b) => new Date(a.due_date) - new Date(b.due_date);
+
+// Colours of the status labels
+const BADGE = { Pending: 'bg-amber-100 text-amber-800', 'Revision Requested': 'bg-orange-100 text-orange-800', Approved: 'bg-emerald-100 text-emerald-800', Rejected: 'bg-red-100 text-red-800', 'On Track': 'bg-sky-100 text-sky-800', 'Ahead of Schedule': 'bg-emerald-100 text-emerald-800', 'Behind Schedule': 'bg-red-100 text-red-800', Completed: 'bg-emerald-100 text-emerald-800' };
+const badgeClass = v => 'px-2 py-0.5 rounded text-xs font-medium whitespace-nowrap ' + (BADGE[v] || 'bg-stone-200 text-stone-700');
+const badgeHtml = v => `<span class="${badgeClass(v)}">${esc(v)}</span>`;
+
+// Show a small message at the bottom of the screen
+function toast(msg, bad) {
+  const t = document.createElement('div');
+  t.className = 'px-4 py-3 rounded shadow text-sm text-white ' + (bad ? 'bg-red-700' : 'bg-ink');
+  t.textContent = msg; $('toast').append(t); setTimeout(() => t.remove(), 3800);
+}
+
+// Put rows into a table body. rows = [[cell, cell], [cell, cell]]
+function fillTable(id, rows) {
+  $(id).innerHTML = rows.length ? rows.map(r => '<tr>' + r.map(c => `<td>${c}</td>`).join('') + '</tr>').join('') : '<tr><td colspan="9" class="text-ink/50">Nothing here yet.</td></tr>';
+}
+
+// Copy a <template> from index.html and fill it with data (see the notes above the templates)
+function cloneTpl(tplId, data, opts = {}) {
+  const n = $(tplId).content.firstElementChild.cloneNode(true);
+  n.querySelectorAll('[data-f]').forEach(e => { e.textContent = data[e.dataset.f] ?? ''; });
+  n.querySelectorAll('[data-badge]').forEach(e => { e.textContent = data[e.dataset.badge]; e.className = badgeClass(data[e.dataset.badge]); });
+  n.querySelectorAll('[data-w]').forEach(e => { e.style.width = data[e.dataset.w] + '%'; });
+  n.querySelectorAll('[data-show]').forEach(e => { if (!data[e.dataset.show]) e.remove(); });
+  n.querySelectorAll('[data-edit]').forEach(e => { if (!opts.edit) e.remove(); });
+  n.querySelectorAll('input[name],textarea[name]').forEach(i => { if (data[i.name] !== undefined) i.value = data[i.name]; });
+  const range = n.querySelector('input[type=range]'); if (range) range.nextElementSibling.textContent = range.value + '%';
+  n.dataset.id = data.id || '';
+  return n;
+}
+const slot = (node, name) => node.querySelector(`[data-slot=${name}]`);
+const lines = (box, items) => { box.innerHTML = ''; items.length ? items.forEach(i => box.append(cloneTpl('tpl-line', i))) : (box.innerHTML = '<p class="text-sm text-ink/50">Nothing here yet.</p>'); };
+
+function notify(userId, message) { if (userId) DB.add('notifications', { user_id: userId, message, is_read: false, created_at: now() }); }
+const userOf = (table, key, id) => DB.get(table, { [key]: id })[0]?.user_id;
+
+/* ---------- 2. Smart progress monitoring ---------- */
+const clamp = (n, a, b) => Math.min(b, Math.max(a, n));
+// Expected progress = how much of the time (project start to deadline) has passed
+const expected = (m, p) => { const s = +new Date(p.created_at), e = +new Date(m.due_date); return e <= s ? 100 : Math.round(clamp((Date.now() - s) / (e - s), 0, 1) * 100); };
+const avg = (ms, f) => ms.length ? Math.round(ms.reduce((a, m) => a + f(m), 0) / ms.length) : 0;
+function pstatus(p, ms) {
+  if (!ms.length) return 'Not Started';
+  if (ms.every(m => m.progress >= 100)) return 'Completed';
+  const diff = avg(ms, m => m.progress) - avg(ms, m => expected(m, p));
+  return diff > 5 ? 'Ahead of Schedule' : diff < -5 ? 'Behind Schedule' : 'On Track';
+}
+const msOf = p => DB.get('milestones', { project_id: p.project_id }).sort(byDue);
+const latestTopic = sid => DB.get('topic_submissions', { student_id: sid }).sort(newest)[0];
+const msData = (m, p) => ({ id: m.milestone_id, title: m.title, due: 'Due ' + fmt(m.due_date), progress: m.progress, meta: `Actual ${m.progress}%, expected ${expected(m, p)}%` });
+
+/* ---------- 3. Moving between screens and pages ---------- */
+const S = { user: null, profile: null };
+const FIRST = { coordinator: 'c-dash', supervisor: 's-dash', student: 'st-dash' };
+
+// ROLE-BASED ACCESS: which pages each role may open
+const PAGES = {
+  coordinator: ['c-dash', 'c-students', 'c-sups', 'c-assign'],
+  supervisor: ['s-dash', 's-topics', 's-projects', 'notes'],
+  student: ['st-dash', 'st-topic', 'st-work', 'notes']
+};
+// ...and which role may use each button or form (anything not listed is open to all logged-in users)
+const ALLOW = {
+  unassign: 'coordinator', edit: 'coordinator', addStudent: 'coordinator', addSupervisor: 'coordinator', assign: 'coordinator',
+  review: 'supervisor', addMs: 'supervisor', addFb: 'supervisor',
+  submitTopic: 'student', resubmit: 'student', setProgress: 'student', upload: 'student'
+};
+function can(name) { if (ALLOW[name] && S.user?.role !== ALLOW[name]) throw Error('Your role is not allowed to do this.'); }
+
+function show(screen) {   // home, login or dashboard
+  document.querySelectorAll('.screen').forEach(s => s.classList.toggle('hidden', s.id !== screen));
+  window.scrollTo(0, 0);
+}
+
+function showPage(name) { // one page inside the dashboard
+  if (!S.user) { show('login'); return; }
+  if (!PAGES[S.user.role].includes(name)) { toast('You do not have access to that page.', true); name = FIRST[S.user.role]; }
+  document.querySelectorAll('[data-page]').forEach(p => p.classList.toggle('hidden', p.dataset.page !== name));
+  document.querySelectorAll('#side [data-go]').forEach(b => b.classList.toggle('bg-white/15', b.dataset.go === name));
+  if (window.innerWidth < 768) { $('side').classList.add('hidden'); $('side').classList.remove('flex'); }
+  const n = DB.get('notifications', { user_id: S.user.user_id, is_read: false }).length;
+  document.querySelectorAll('.unread').forEach(e => { e.textContent = n || ''; e.className = 'unread' + (n ? ' ml-1 px-1.5 rounded-full bg-amber-400 text-ink text-xs' : ''); });
+  RENDER[name]();
+  window.scrollTo(0, 0);
+}
+
+function enter(user) {    // open the dashboard for this user
+  S.user = user; S.profile = DB.get(user.role + 's', { user_id: user.user_id })[0];
+  SS.setItem('fyp_uid', user.user_id);
+  setText('who', `${S.profile?.name || user.email} (${user.role})`);
+  document.querySelectorAll('nav[data-role]').forEach(n => { const mine = n.dataset.role === user.role; n.classList.toggle('hidden', !mine); n.classList.toggle('flex', mine); });
+  show('dashboard'); showPage(FIRST[user.role]);
+}
+
+/* ---------- 4. What each page shows ---------- */
+const RENDER = {
+  // ----- Coordinator -----
+  'c-dash'() {
+    const st = DB.get('students'), act = DB.get('supervisor_assignments', { assignment_status: 'Active' });
+    setText('n-students', st.length); setText('n-sups', DB.get('supervisors').length); setText('n-assigned', act.length); setText('n-waiting', st.length - act.length);
+    fillTable('c-projects', st.map(s => {
+      const a = act.find(a => a.student_id === s.student_id), sp = a && DB.get('supervisors', { supervisor_id: a.supervisor_id })[0];
+      const t = latestTopic(s.student_id), p = DB.get('projects', { student_id: s.student_id })[0];
+      return [esc(s.name), sp ? esc(sp.name) : 'Not assigned', t ? badgeHtml(t.status) : 'No topic', p ? badgeHtml(pstatus(p, msOf(p))) : 'None'];
+    }));
+  },
+  'c-students': () => people('student'),
+  'c-sups': () => people('supervisor'),
+  'c-assign'() {
+    const act = DB.get('supervisor_assignments', { assignment_status: 'Active' }), st = DB.get('students'), sp = DB.get('supervisors');
+    const opts = (rows, id) => '<option value="">Choose</option>' + rows.map(r => `<option value="${r[id]}">${esc(r.name)}</option>`).join('');
+    $('as-student').innerHTML = opts(st, 'student_id'); $('as-sup').innerHTML = opts(sp, 'supervisor_id');
+    fillTable('assign-body', act.map(a => [esc(st.find(s => s.student_id === a.student_id)?.name), esc(sp.find(s => s.supervisor_id === a.supervisor_id)?.name), fmt(a.assigned_at), `<button data-act="unassign" data-id="${a.assignment_id}" class="text-red-700 underline">Remove</button>`]));
+  },
+  // ----- Supervisor -----
+  's-dash'() {
+    const me = S.profile.supervisor_id, ps = DB.get('projects', { supervisor_id: me }), sts = myStudents();
+    setText('n-mystudents', sts.length); setText('n-topics', DB.get('topic_submissions', { supervisor_id: me, status: 'Pending' }).length); setText('n-projects', ps.length);
+    fillTable('s-students', sts.map(s => { const t = latestTopic(s.student_id), p = ps.find(p => p.student_id === s.student_id); return [esc(s.name), t ? badgeHtml(t.status) : 'No topic', p ? badgeHtml(pstatus(p, msOf(p))) : 'None']; }));
+  },
+  's-topics'() {
+    const all = DB.get('topic_submissions', { supervisor_id: S.profile.supervisor_id }).sort(newest), name = id => DB.get('students', { student_id: id })[0]?.name;
+    const pending = all.filter(t => t.status === 'Pending'), done = all.filter(t => t.status !== 'Pending');
+    $('review-list').innerHTML = ''; pending.forEach(t => $('review-list').append(cloneTpl('tpl-review', { ...t, id: t.submission_id, meta: `${name(t.student_id)}, submitted ${fmt(t.submitted_at)}`, feedback: undefined })));
+    $('review-empty').classList.toggle('hidden', pending.length > 0);
+    fillTable('reviewed-body', done.map(t => [esc(name(t.student_id)), esc(t.topic_title), badgeHtml(t.status), fmt(t.reviewed_at)]));
+  },
+  's-projects'() {
+    const ps = DB.get('projects', { supervisor_id: S.profile.supervisor_id }); $('p-list').innerHTML = ''; $('p-empty').classList.toggle('hidden', ps.length > 0);
+    ps.forEach(p => {
+      const ms = msOf(p), n = cloneTpl('tpl-project', { id: p.project_id, project_title: p.title, student: DB.get('students', { student_id: p.student_id })[0]?.name, status: pstatus(p, ms) });
+      slot(n, 'ms').innerHTML = ''; ms.length ? ms.forEach(m => slot(n, 'ms').append(cloneTpl('tpl-ms', msData(m, p)))) : (slot(n, 'ms').innerHTML = '<p class="text-sm text-ink/50 py-3">No milestones yet.</p>');
+      lines(slot(n, 'docs'), DB.get('documents', { project_id: p.project_id }).map(d => ({ text: d.file_name, date: 'Uploaded ' + fmt(d.uploaded_at) })));
+      lines(slot(n, 'fb'), DB.get('feedback', { project_id: p.project_id }).map(f => ({ text: f.comment, date: fmt(f.created_at) })));
+      $('p-list').append(n);
+    });
+  },
+  // ----- Student -----
+  'st-dash'() {
+    const c = ctx(), t = c.topics[0];
+    setText('sd-welcome', 'Welcome, ' + S.profile.name.split(' ')[0]);
+    setText('sd-sup', c.sup ? c.sup.name : 'Not yet assigned'); setText('sd-dept', c.sup ? c.sup.department : 'The coordinator will assign a supervisor.');
+    setText('sd-topic', t ? t.topic_title : 'No topic submitted yet'); $('sd-topic-badge').innerHTML = t ? badgeHtml(t.status) : '';
+    $('sd-prog-badge').innerHTML = c.p ? badgeHtml(pstatus(c.p, c.ms)) : '<span class="text-sm">Starts after your topic is approved.</span>';
+    const a = avg(c.ms, m => m.progress), e = c.p ? avg(c.ms, m => expected(m, c.p)) : 0;
+    setText('sd-actual-txt', a); setText('sd-exp-txt', e); $('sd-actual-bar').style.width = a + '%'; $('sd-exp-bar').style.width = e + '%';
+  },
+  'st-topic'() {
+    const c = ctx(), busy = c.topics.some(t => ['Pending', 'Approved', 'Revision Requested'].includes(t.status));
+    $('t-nosup').classList.toggle('hidden', !!c.sup); $('t-formcard').classList.toggle('hidden', !c.sup || busy);
+    $('t-list').innerHTML = ''; c.topics.forEach(t => $('t-list').append(cloneTpl('tpl-topic', { ...t, id: t.submission_id, meta: 'Submitted ' + fmt(t.submitted_at), feedback: t.supervisor_feedback, revision: t.status === 'Revision Requested' })));
+  },
+  'st-work'() {
+    const c = ctx(); $('w-empty').classList.toggle('hidden', !!c.p); $('w-content').classList.toggle('hidden', !c.p); if (!c.p) return;
+    setText('w-title', c.p.title); $('w-badge').textContent = pstatus(c.p, c.ms); $('w-badge').className = badgeClass($('w-badge').textContent);
+    $('w-ms').innerHTML = ''; c.ms.length ? c.ms.forEach(m => $('w-ms').append(cloneTpl('tpl-ms', msData(m, c.p), { edit: true }))) : ($('w-ms').innerHTML = '<p class="text-sm text-ink/50 py-3">Your supervisor has not added milestones yet.</p>');
+    lines($('w-docs'), DB.get('documents', { project_id: c.p.project_id }).map(d => ({ text: d.file_name, date: 'Uploaded ' + fmt(d.uploaded_at) })));
+    lines($('w-fb'), DB.get('feedback', { project_id: c.p.project_id }).map(f => ({ text: f.comment, date: fmt(f.created_at) })));
+  },
+  notes() {
+    lines($('notes-list'), DB.get('notifications', { user_id: S.user.user_id }).sort((a, b) => b.created_at.localeCompare(a.created_at)).map(n => ({ text: n.message, date: fmt(n.created_at) })));
+  }
+};
+
+function people(k) {   // students or supervisors table
+  const st = k === 'student';
+  fillTable(k + 's-body', DB.get(k + 's').map(r => [esc(r.name), esc(st ? r.reg_number : r.staff_id), esc(r.department), `<button data-act="edit" data-t="${k}s" data-id="${r[PK[k + 's']]}" data-name="${esc(r.name)}" data-dep="${esc(r.department)}" class="text-brand underline">Edit</button>`]));
+}
+function myStudents() {
+  return DB.get('supervisor_assignments', { supervisor_id: S.profile.supervisor_id, assignment_status: 'Active' }).map(a => DB.get('students', { student_id: a.student_id })[0]).filter(Boolean);
+}
+function ctx() {   // everything a student needs: supervisor, topics, project, milestones
+  const id = S.profile.student_id, a = DB.get('supervisor_assignments', { student_id: id, assignment_status: 'Active' })[0];
+  const p = DB.get('projects', { student_id: id })[0];
+  return { sup: a && DB.get('supervisors', { supervisor_id: a.supervisor_id })[0], topics: DB.get('topic_submissions', { student_id: id }).sort(newest), p, ms: p ? msOf(p) : [] };
+}
+
+/* ---------- 5. Buttons (data-act) ---------- */
+const ACT = {
+  hmenu: () => $('mnav').classList.toggle('hidden'),
+  menu: () => { $('side').classList.toggle('hidden'); $('side').classList.toggle('flex'); },
+  fill: d => { $('l-email').value = d.e; $('l-pass').value = 'demo1234'; },
+  reset: () => DB.reset(),
+  showpass: () => { const i = $('l-pass'); i.type = i.type === 'password' ? 'text' : 'password'; },
+  logout: () => { SS.removeItem('fyp_uid'); S.user = S.profile = null; show('home'); },
+  unassign: d => { DB.set('supervisor_assignments', d.id, { assignment_status: 'Inactive' }); toast('Assignment removed'); showPage('c-assign'); },
+  edit: d => {
+    const n = prompt('Full name', d.name); if (n === null) return;
+    const dp = prompt('Department', d.dep); if (dp === null) return;
+    DB.set(d.t, d.id, { name: n, department: dp }); toast('Record updated'); showPage(S.user.role === 'coordinator' && d.t === 'students' ? 'c-students' : 'c-sups');
+  },
+  readAll: () => { DB.get('notifications', { user_id: S.user.user_id, is_read: false }).forEach(n => DB.set('notifications', n.notification_id, { is_read: true })); showPage('notes'); }
+};
+
+/* ---------- 6. Forms (data-form). Each one gets the form values in "d" ---------- */
+const FORM = {
+  login(d) {
+    const err = $('login-error'); err.classList.add('hidden');
+    const u = DB.get('users').find(u => u.email === d.email.trim().toLowerCase() && u.password === d.password);
+    if (!u) { err.textContent = 'Wrong email or password. Check your details and try again.'; err.classList.remove('hidden'); return; }
+    $('l-pass').value = ''; enter(u); toast('Welcome, ' + (S.profile?.name || u.email));
+  },
+  addStudent: (d) => addPerson('student', d),
+  addSupervisor: (d) => addPerson('supervisor', d),
+  assign(d) {
+    if (DB.get('supervisor_assignments', { student_id: d.student_id, assignment_status: 'Active' }).length) throw Error('This student already has an active supervisor. Remove it first.');
+    DB.add('supervisor_assignments', { student_id: d.student_id, supervisor_id: d.supervisor_id, assigned_at: now(), assignment_status: 'Active' });
+    notify(userOf('students', 'student_id', d.student_id), 'A supervisor has been assigned to you.');
+    notify(userOf('supervisors', 'supervisor_id', d.supervisor_id), 'A new student has been assigned to you.');
+    toast('Supervisor assigned'); showPage('c-assign');
+  },
+  submitTopic(d) {
+    const c = ctx(); if (!c.sup) throw Error('Supervisor not yet assigned.');
+    DB.add('topic_submissions', { student_id: S.profile.student_id, supervisor_id: c.sup.supervisor_id, topic_title: d.topic_title, description: d.description, status: 'Pending', supervisor_feedback: '', submitted_at: now(), reviewed_at: null });
+    notify(c.sup.user_id, `${S.profile.name} submitted a topic for review.`); toast('Topic submitted'); showPage('st-topic');
+  },
+  resubmit(d, id) {
+    DB.set('topic_submissions', id, { topic_title: d.topic_title, description: d.description, status: 'Pending', submitted_at: now() });
+    notify(ctx().sup?.user_id, `${S.profile.name} resubmitted a revised topic.`); toast('Topic resubmitted'); showPage('st-topic');
+  },
+  review(d, id) {
+    if (d.decision !== 'Approved' && !d.feedback.trim()) throw Error(d.decision === 'Rejected' ? 'Enter a reason for rejecting this topic.' : 'Enter feedback for the revision.');
+    const t = DB.get('topic_submissions', { submission_id: id })[0];
+    DB.set('topic_submissions', id, { status: d.decision, supervisor_feedback: d.feedback, reviewed_at: now() });
+    if (d.decision === 'Approved' && !DB.get('projects', { student_id: t.student_id }).length)
+      DB.add('projects', { student_id: t.student_id, supervisor_id: t.supervisor_id, title: t.topic_title, description: t.description, status: 'Active', created_at: now() });
+    notify(userOf('students', 'student_id', t.student_id), `Your topic "${t.topic_title}" is now: ${d.decision}.`);
+    toast('Decision saved'); showPage('s-topics');
+  },
+  addMs(d, id) {
+    const p = DB.get('projects', { project_id: id })[0];
+    DB.add('milestones', { project_id: id, title: d.title, description: '', status: 'Not Started', progress: 0, due_date: new Date(d.due_date).toISOString() });
+    notify(userOf('students', 'student_id', p.student_id), `New milestone: ${d.title} (due ${fmt(d.due_date)}).`); toast('Milestone added'); showPage('s-projects');
+  },
+  addFb(d, id) {
+    const p = DB.get('projects', { project_id: id })[0];
+    DB.add('feedback', { project_id: id, supervisor_id: S.profile.supervisor_id, comment: d.comment, created_at: now() });
+    notify(userOf('students', 'student_id', p.student_id), 'Your supervisor left new feedback.'); toast('Feedback sent'); showPage('s-projects');
+  },
+  setProgress(d, id) {
+    const m = DB.get('milestones', { milestone_id: id })[0], p = DB.get('projects', { project_id: m.project_id })[0], v = +d.progress;
+    DB.set('milestones', id, { progress: v, status: v >= 100 ? 'Completed' : v > 0 ? 'In Progress' : 'Not Started' });
+    DB.add('progress', { milestone_id: id, expected_progress: expected(m, p), actual_progress: v, recorded_at: now() });
+    notify(userOf('supervisors', 'supervisor_id', p.supervisor_id), `${S.profile.name} updated "${m.title}" to ${v}%.`); toast('Progress saved'); showPage('st-work');
+  },
+  upload(d) {
+    const p = ctx().p, file = d.file;  // the demo saves only the file name; Supabase Storage will save the real file
+    DB.add('documents', { project_id: p.project_id, file_name: file.name, file_path: file.name, uploaded_at: now() });
+    notify(userOf('supervisors', 'supervisor_id', p.supervisor_id), `${S.profile.name} uploaded ${file.name}.`); toast('Document uploaded'); showPage('st-work');
+  }
+};
+function addPerson(role, d) {
+  if (DB.get('users').some(u => u.email === d.email)) throw Error('This email is already registered.');
+  const u = DB.add('users', { email: d.email, password: d.password, role });
+  const { email, password, ...rest } = d; DB.add(role + 's', { user_id: u.user_id, ...rest });
+  toast(role + ' added'); showPage(role === 'student' ? 'c-students' : 'c-sups');
+}
+
+/* ---------- 7. Listen for clicks and form submits ---------- */
+function run(fn) { try { fn(); } catch (e) { toast(e.message || String(e), true); console.error(e); } }
+document.addEventListener('click', e => {
+  const scr = e.target.closest('[data-screen]'); if (scr) { e.preventDefault(); show(scr.dataset.screen); return; }
+  const go = e.target.closest('[data-go]'); if (go) { run(() => showPage(go.dataset.go)); return; }
+  const b = e.target.closest('[data-act]'); if (b) run(() => { can(b.dataset.act); ACT[b.dataset.act](b.dataset); });
+});
+document.addEventListener('submit', e => {
+  const f = e.target.closest('[data-form]'); if (!f) return; e.preventDefault();
+  const id = f.closest('[data-id]')?.dataset.id;   // the id of the topic or project this form belongs to
+  run(() => { can(f.dataset.form); FORM[f.dataset.form](Object.fromEntries(new FormData(f, e.submitter)), id); });
+});
+
+/* ---------- 8. Start ---------- */
+const savedId = SS.getItem('fyp_uid');
+const savedUser = savedId && DB.get('users', { user_id: savedId })[0];
+savedUser ? enter(savedUser) : show('home');
+
+</script>
+</body>
+</html>
