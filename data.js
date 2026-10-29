@@ -1,24 +1,24 @@
-/* data.js = the DATABASE of the prototype.
-   Everything is saved in the browser (localStorage), so refreshing keeps your data.
-   Later, only this file is replaced by Supabase. app.js will stay almost the same. */
+/* data.js = the RECORD STORE of the prototype.
+  Structured records use localStorage; uploaded file bytes use IndexedDB.
+  Neither is shared with other browsers or devices. */
 
 const day = n => new Date(Date.now() + n * 864e5).toISOString();   // today +/- n days
 const dept = "Software Engineering";
 
-// Starting data. All demo passwords: demo1234
+// Demo password: demo1234. These PBKDF2 verifiers are demo-only credentials.
 const SEED = {
   users: [
-    { user_id: "u1", email: "coordinator@buk.edu.ng", password: "demo1234", role: "coordinator" },
-    { user_id: "u2", email: "supervisor@buk.edu.ng", password: "demo1234", role: "supervisor" },
-    { user_id: "u3", email: "supervisor2@buk.edu.ng", password: "demo1234", role: "supervisor" },
-    { user_id: "u4", email: "student@buk.edu.ng", password: "demo1234", role: "student" },
-    { user_id: "u5", email: "student2@buk.edu.ng", password: "demo1234", role: "student" },
-    { user_id: "u6", email: "student3@buk.edu.ng", password: "demo1234", role: "student" }
+    { user_id: "u1", email: "coordinator@buk.edu.ng", password_salt: "6679702d64656d6f2d7374617469632d73616c742d7631", password_hash: "2eddf261831d37efe096213906eaa2ca2136d56dda72fe5bdcebff054e948be1", role: "coordinator", active: true },
+    { user_id: "u2", email: "supervisor@buk.edu.ng", password_salt: "6679702d64656d6f2d7374617469632d73616c742d7631", password_hash: "2eddf261831d37efe096213906eaa2ca2136d56dda72fe5bdcebff054e948be1", role: "supervisor", active: true },
+    { user_id: "u3", email: "supervisor2@buk.edu.ng", password_salt: "6679702d64656d6f2d7374617469632d73616c742d7631", password_hash: "2eddf261831d37efe096213906eaa2ca2136d56dda72fe5bdcebff054e948be1", role: "supervisor", active: true },
+    { user_id: "u4", email: "student@buk.edu.ng", password_salt: "6679702d64656d6f2d7374617469632d73616c742d7631", password_hash: "2eddf261831d37efe096213906eaa2ca2136d56dda72fe5bdcebff054e948be1", role: "student", active: true },
+    { user_id: "u5", email: "student2@buk.edu.ng", password_salt: "6679702d64656d6f2d7374617469632d73616c742d7631", password_hash: "2eddf261831d37efe096213906eaa2ca2136d56dda72fe5bdcebff054e948be1", role: "student", active: true },
+    { user_id: "u6", email: "student3@buk.edu.ng", password_salt: "6679702d64656d6f2d7374617469632d73616c742d7631", password_hash: "2eddf261831d37efe096213906eaa2ca2136d56dda72fe5bdcebff054e948be1", role: "student", active: true }
   ],
   coordinators: [{ coordinator_id: "c1", user_id: "u1", name: "Dr. Aisha Bello", staff_id: "SE/C/001", department: dept }],
   supervisors: [
-    { supervisor_id: "sp1", user_id: "u2", name: "Dr. Musa Danladi", staff_id: "SE/S/014", department: dept },
-    { supervisor_id: "sp2", user_id: "u3", name: "Dr. Hauwa Garba", staff_id: "SE/S/022", department: dept }
+    { supervisor_id: "sp1", user_id: "u2", name: "Dr. Musa Danladi", designation: "Senior Lecturer", staff_id: "SE/S/014", department: dept },
+    { supervisor_id: "sp2", user_id: "u3", name: "Dr. Hauwa Garba", designation: "Lecturer", staff_id: "SE/S/022", department: dept }
   ],
   students: [
     { student_id: "st1", user_id: "u4", name: "Ibrahim Sani", reg_number: "BUK/21/SEN/1001", department: dept, level: "400" },
@@ -31,7 +31,7 @@ const SEED = {
   ],
   topic_submissions: [
     { submission_id: "t1", student_id: "st1", supervisor_id: "sp1", topic_title: "Online Result Verification System", description: "A web system for checking student results.", status: "Approved", supervisor_feedback: "Good topic.", submitted_at: day(-35), reviewed_at: day(-33) },
-    { submission_id: "t2", student_id: "st2", supervisor_id: "sp1", topic_title: "Hostel Allocation System", description: "Allocates hostel rooms to students online.", status: "Pending", supervisor_feedback: "", submitted_at: day(-1), reviewed_at: null }
+    { submission_id: "t2", student_id: "st2", supervisor_id: "sp1", topic_title: "Hostel Allocation System", description: "Allocates hostel rooms to students online.", status: "Pending Review", supervisor_feedback: "", submitted_at: day(-1), reviewed_at: null }
   ],
   projects: [
     { project_id: "p1", student_id: "st1", supervisor_id: "sp1", title: "Online Result Verification System", description: "A web system for checking student results.", status: "Active", created_at: day(-30) }

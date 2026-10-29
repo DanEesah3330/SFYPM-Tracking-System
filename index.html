@@ -55,12 +55,12 @@
 
   <!-- Navbar: logo on the left, links in the middle, Login button on the right -->
   <header class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-stone-200">
-    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       <a href="#top" class="flex items-center gap-2">
-        <svg class="w-9 h-9"><use href="#logo"/></svg>
+        <svg class="w-9 h-9 shrink-0"><use href="#logo"/></svg>
         <span class="font-bold text-lg leading-none">FYP Tracker<small class="block text-[10px] font-normal text-ink/50">Smart Project Management</small></span>
       </a>
-      <nav class="hidden md:flex items-center gap-1">
+      <nav class="hidden md:flex items-center gap-2">
         <a href="#features" class="nav-link">Features</a>
         <a href="#how" class="nav-link">How it works</a>
         <a href="#roles" class="nav-link">Who uses it</a>
@@ -68,91 +68,173 @@
       <div class="flex items-center gap-2">
         <button data-screen="login" class="btn">Login</button>
         <!-- Menu button (phones only) -->
-        <button data-act="hmenu" class="md:hidden px-3 py-2 text-xl" aria-label="Open menu">&#9776;</button>
+        <button data-act="hmenu" class="md:hidden px-3 py-2 text-xl rounded-lg hover:bg-stone-100" aria-label="Open menu">&#9776;</button>
       </div>
     </div>
     <!-- Phone menu (hidden until the button is pressed) -->
-    <nav id="mnav" class="hidden md:hidden border-t border-stone-200 px-4 py-2 flex-col">
+    <nav id="mnav" class="hidden md:hidden border-t border-stone-200 px-4 sm:px-6 py-2 flex-col">
       <a href="#features" data-act="hmenu" class="nav-link block">Features</a>
       <a href="#how" data-act="hmenu" class="nav-link block">How it works</a>
       <a href="#roles" data-act="hmenu" class="nav-link block">Who uses it</a>
     </nav>
   </header>
 
-  <!-- Hero: big headline on the left, preview card on the right -->
-  <section id="top" class="max-w-6xl mx-auto px-4 py-12 md:py-20 grid md:grid-cols-2 gap-10 items-center">
-    <div>
-      <span class="inline-block px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-medium">Built for final year students and supervisors</span>
-      <h1 class="mt-4 text-4xl md:text-5xl font-bold leading-tight">From topic approval to final defence, <span class="text-brand">all in one place.</span></h1>
-      <p class="mt-4 text-lg text-ink/70 max-w-lg">No more WhatsApp lists, paper notice boards and lost emails. Get a supervisor, submit your topic, track milestones and see right away if you are on track.</p>
-      <div class="mt-6 flex flex-wrap gap-3">
-        <button data-screen="login" class="btn">Login to your account</button>
-        <a href="#features" class="btn-line">See features</a>
+  <!-- Hero -->
+  <section id="top" class="relative overflow-hidden bg-gradient-to-br from-emerald-50 via-paper to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16 lg:py-24 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div class="max-w-xl">
+        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-semibold tracking-wide">
+          <span class="w-1.5 h-1.5 rounded-full bg-brand"></span>
+          FOR FINAL-YEAR PROJECTS
+        </span>
+        <h1 class="mt-5 text-4xl sm:text-5xl lg:text-[3.5rem] font-bold leading-tight tracking-tight"> Your final-year project, <span class="text-brand">in focus.</span></h1>
+        <p class="mt-5 text-lg leading-8 text-ink/70">A shared space for students, supervisors and coordinators to manage topics, milestones and feedback from start to finish.</p>
+        <div class="mt-7 flex flex-wrap gap-3">
+          <button data-screen="login" class="btn px-5 py-3 rounded-lg shadow-sm">Login to your account</button>
+          <a href="#features" class="btn-line px-5 py-3 rounded-lg bg-white">Explore features</a>
+        </div>
+        <div class="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm font-medium text-ink/70">
+          <span class="inline-flex items-center gap-2"><span class="text-brand" aria-hidden="true">✓</span>One shared workspace</span>
+          <span class="inline-flex items-center gap-2"><span class="text-brand" aria-hidden="true">✓</span>Clear project stages</span>
+          <span class="inline-flex items-center gap-2"><span class="text-brand" aria-hidden="true">✓</span>Connected project team</span>
+        </div>
       </div>
-      <div class="mt-8 flex gap-8 text-sm text-ink/70">
-        <div><b class="block text-2xl text-ink">3</b>User roles</div>
-        <div><b class="block text-2xl text-ink">1</b>Central platform</div>
-        <div><b class="block text-2xl text-ink">24/7</b>Access</div>
-      </div>
-    </div>
 
-    <!-- Preview card (just a picture of what the system looks like) -->
-    <div class="bg-white border border-stone-200 rounded-2xl shadow-lg p-5">
-      <div class="flex justify-between items-start gap-2">
-        <div><div class="font-bold">Online Result Verification System</div><div class="text-sm text-ink/60">Ibrahim Sani, Dr. Musa Danladi</div></div>
-        <span class="px-2 py-0.5 rounded text-xs font-medium bg-sky-100 text-sky-800 whitespace-nowrap">On Track</span>
+      <!-- Illustrative interface preview; contains no sample users or project data. -->
+      <div class="relative mx-auto w-full max-w-xl">
+        <div class="absolute -inset-4 sm:-inset-6 rounded-[2rem] bg-emerald-100/70 -rotate-2"></div>
+        <div class="relative overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-xl shadow-emerald-900/10">
+          <div class="flex items-center justify-between gap-4 border-b border-stone-100 px-5 py-4 sm:px-6">
+            <div class="flex items-center gap-3">
+              <span class="grid h-10 w-10 place-items-center rounded-xl bg-emerald-100 text-brand">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 5.75A1.75 1.75 0 0 1 5.75 4h12.5A1.75 1.75 0 0 1 20 5.75v12.5A1.75 1.75 0 0 1 18.25 20H5.75A1.75 1.75 0 0 1 4 18.25zM8 8h8M8 12h8M8 16h4"/></svg>
+              </span>
+              <div><p class="text-xs font-medium uppercase tracking-wider text-ink/50">Workspace preview</p><h2 class="font-bold">Project overview</h2></div>
+            </div>
+            <span class="rounded-full bg-stone-100 px-3 py-1 text-xs font-medium text-ink/60">Dashboard</span>
+          </div>
+          <div class="grid grid-cols-2 gap-3 p-4 sm:gap-4 sm:p-6">
+            <div class="col-span-2 rounded-xl border border-stone-200 bg-stone-50/80 p-4 sm:p-5">
+              <div class="flex items-center justify-between gap-3">
+                <div><p class="text-sm font-semibold">Project journey</p><p class="mt-1 text-xs text-ink/60">From topic submission to final review</p></div>
+                <span class="grid h-9 w-9 place-items-center rounded-lg bg-white text-brand shadow-sm">
+                  <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 19V9m7 10V5m7 14v-7"/></svg>
+                </span>
+              </div>
+              <div class="mt-5 flex items-center">
+                <span class="h-3 w-3 rounded-full bg-brand ring-4 ring-emerald-100"></span><span class="h-0.5 flex-1 bg-stone-300"></span>
+                <span class="h-3 w-3 rounded-full border-2 border-brand bg-white"></span><span class="h-0.5 flex-1 bg-stone-200"></span>
+                <span class="h-3 w-3 rounded-full border-2 border-stone-300 bg-white"></span><span class="h-0.5 flex-1 bg-stone-200"></span>
+                <span class="h-3 w-3 rounded-full border-2 border-stone-300 bg-white"></span>
+              </div>
+              <div class="mt-2 flex justify-between text-[10px] font-medium text-ink/50 sm:text-xs"><span>Topic</span><span>Milestones</span><span>Review</span><span>Complete</span></div>
+            </div>
+            <div class="rounded-xl border border-stone-200 p-4">
+              <span class="grid h-9 w-9 place-items-center rounded-lg bg-emerald-50 text-brand">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5h8m-8 4h8m-8 4h5m-7 7h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2z"/></svg>
+              </span>
+              <p class="mt-3 text-sm font-semibold">Topic review</p><p class="mt-1 text-xs leading-5 text-ink/60">Submission and supervisor feedback</p>
+            </div>
+            <div class="rounded-xl border border-stone-200 p-4">
+              <span class="grid h-9 w-9 place-items-center rounded-lg bg-amber-50 text-amber-700">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 3v3m8-3v3M4 9h16M6 5h12a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg>
+              </span>
+              <p class="mt-3 text-sm font-semibold">Milestones</p><p class="mt-1 text-xs leading-5 text-ink/60">Deadlines and project updates</p>
+            </div>
+            <div class="col-span-2 flex items-center gap-3 rounded-xl border border-stone-200 p-4">
+              <span class="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-sky-50 text-sky-700">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 16V4m0 0L8 8m4-4 4 4M5 14v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/></svg>
+              </span>
+              <div><p class="text-sm font-semibold">Documents &amp; feedback</p><p class="mt-1 text-xs text-ink/60">Files and conversations in one place</p></div>
+              <svg class="ml-auto h-4 w-4 shrink-0 text-ink/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m9 18 6-6-6-6"/></svg>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="mt-5 space-y-4 text-sm">
-        <div><div class="flex justify-between"><span>Chapters 1 to 3</span><span class="text-ink/60">100%</span></div><div class="mt-1 h-2 bg-stone-200 rounded"><div class="h-2 rounded bg-brand" style="width:100%"></div></div></div>
-        <div><div class="flex justify-between"><span>System design</span><span class="text-ink/60">60%</span></div><div class="mt-1 h-2 bg-stone-200 rounded"><div class="h-2 rounded bg-brand" style="width:60%"></div></div></div>
-        <div><div class="flex justify-between"><span>Implementation</span><span class="text-ink/60">35%</span></div><div class="mt-1 h-2 bg-stone-200 rounded"><div class="h-2 rounded bg-brand" style="width:35%"></div></div></div>
-      </div>
-      <div class="mt-5 p-3 rounded bg-stone-50 border border-stone-200 text-sm"><b>Supervisor feedback:</b> Chapter 3 is clear. Start the database design early.</div>
     </div>
   </section>
 
   <!-- Features -->
   <section id="features" class="bg-white border-y border-stone-200">
-    <div class="max-w-6xl mx-auto px-4 py-14">
-      <h2 class="text-3xl font-bold">Everything your project needs</h2>
-      <p class="mt-2 text-ink/70 max-w-xl">Replace scattered messages with one clear system.</p>
-      <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <div class="p-5 rounded-lg border border-stone-200"><div class="w-9 h-9 rounded bg-emerald-100 text-brand font-bold grid place-items-center">1</div><h3 class="mt-3 font-bold">Supervisor assignment</h3><p class="mt-1 text-sm text-ink/70">The coordinator assigns supervisors in the system. Students see their supervisor right away.</p></div>
-        <div class="p-5 rounded-lg border border-stone-200"><div class="w-9 h-9 rounded bg-emerald-100 text-brand font-bold grid place-items-center">2</div><h3 class="mt-3 font-bold">Topic submission and review</h3><p class="mt-1 text-sm text-ink/70">Submit a topic, get approved, rejected or asked to revise, with clear feedback each time.</p></div>
-        <div class="p-5 rounded-lg border border-stone-200"><div class="w-9 h-9 rounded bg-emerald-100 text-brand font-bold grid place-items-center">3</div><h3 class="mt-3 font-bold">Milestones and deadlines</h3><p class="mt-1 text-sm text-ink/70">Supervisors set milestones with deadlines. Students update their progress as they work.</p></div>
-        <div class="p-5 rounded-lg border border-stone-200"><div class="w-9 h-9 rounded bg-emerald-100 text-brand font-bold grid place-items-center">4</div><h3 class="mt-3 font-bold">Smart progress status</h3><p class="mt-1 text-sm text-ink/70">The system compares expected and actual progress and shows On Track, Ahead or Behind Schedule.</p></div>
-        <div class="p-5 rounded-lg border border-stone-200"><div class="w-9 h-9 rounded bg-emerald-100 text-brand font-bold grid place-items-center">5</div><h3 class="mt-3 font-bold">Documents and feedback</h3><p class="mt-1 text-sm text-ink/70">Upload project documents and receive supervisor comments in the same place.</p></div>
-        <div class="p-5 rounded-lg border border-stone-200"><div class="w-9 h-9 rounded bg-emerald-100 text-brand font-bold grid place-items-center">6</div><h3 class="mt-3 font-bold">Notifications</h3><p class="mt-1 text-sm text-ink/70">Get told when a supervisor is assigned, a topic is reviewed, or new feedback arrives.</p></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+      <div class="max-w-2xl">
+        <p class="text-sm font-semibold uppercase tracking-widest text-brand">A clearer way to manage your work</p>
+        <h2 class="mt-3 text-3xl sm:text-4xl font-bold tracking-tight">Everything your project needs</h2>
+        <p class="mt-3 text-ink/70 leading-7">Keep the people, decisions and next steps around your final-year project connected.</p>
+      </div>
+      <div class="mt-9 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
+        <article class="flex h-full flex-col rounded-2xl border border-stone-200 bg-white p-5 sm:p-6 shadow-sm">
+          <span class="grid h-11 w-11 place-items-center rounded-xl bg-emerald-50 text-brand"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M16 19h5v-1a4 4 0 0 0-5.5-3.7M16 19H8m8 0v-1a4 4 0 0 0-8 0v1m8-12a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm5 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM3 19H2v-1a4 4 0 0 1 5.5-3.7"/></svg></span>
+          <h3 class="mt-4 text-base font-bold">Supervisor assignment</h3><p class="mt-2 text-sm leading-6 text-ink/70">Coordinators assign supervisors, and students can find their project contact in one place.</p>
+        </article>
+        <article class="flex h-full flex-col rounded-2xl border border-stone-200 bg-white p-5 sm:p-6 shadow-sm">
+          <span class="grid h-11 w-11 place-items-center rounded-xl bg-emerald-50 text-brand"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5h8m-8 4h8m-8 4h5m-7 7h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2z"/></svg></span>
+          <h3 class="mt-4 text-base font-bold">Topic submission and review</h3><p class="mt-2 text-sm leading-6 text-ink/70">Submit a topic and receive an approval decision or clear guidance on revisions.</p>
+        </article>
+        <article class="flex h-full flex-col rounded-2xl border border-stone-200 bg-white p-5 sm:p-6 shadow-sm">
+          <span class="grid h-11 w-11 place-items-center rounded-xl bg-amber-50 text-amber-700"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 3v3m8-3v3M4 9h16M6 5h12a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg></span>
+          <h3 class="mt-4 text-base font-bold">Milestones and deadlines</h3><p class="mt-2 text-sm leading-6 text-ink/70">Set project milestones and deadlines, then keep updates alongside the work.</p>
+        </article>
+        <article class="flex h-full flex-col rounded-2xl border border-stone-200 bg-white p-5 sm:p-6 shadow-sm">
+          <span class="grid h-11 w-11 place-items-center rounded-xl bg-violet-50 text-violet-700"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 19V5m0 14h17M8 15l4-4 3 2 5-6"/></svg></span>
+          <h3 class="mt-4 text-base font-bold">Smart progress status</h3><p class="mt-2 text-sm leading-6 text-ink/70">Compare expected and actual progress to understand whether a project is on track.</p>
+        </article>
+        <article class="flex h-full flex-col rounded-2xl border border-stone-200 bg-white p-5 sm:p-6 shadow-sm">
+          <span class="grid h-11 w-11 place-items-center rounded-xl bg-sky-50 text-sky-700"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 16V4m0 0L8 8m4-4 4 4M5 14v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/></svg></span>
+          <h3 class="mt-4 text-base font-bold">Documents and feedback</h3><p class="mt-2 text-sm leading-6 text-ink/70">Upload project files and keep supervisor comments connected to your work.</p>
+        </article>
+        <article class="flex h-full flex-col rounded-2xl border border-stone-200 bg-white p-5 sm:p-6 shadow-sm">
+          <span class="grid h-11 w-11 place-items-center rounded-xl bg-rose-50 text-rose-700"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9m-8 12h4"/></svg></span>
+          <h3 class="mt-4 text-base font-bold">Notifications</h3><p class="mt-2 text-sm leading-6 text-ink/70">Stay informed about supervisor assignments, topic reviews and new feedback.</p>
+        </article>
       </div>
     </div>
   </section>
 
   <!-- How it works -->
-  <section id="how" class="max-w-6xl mx-auto px-4 py-14">
-    <h2 class="text-3xl font-bold">How it works</h2>
+  <section id="how" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+    <div class="max-w-2xl">
+      <p class="text-sm font-semibold uppercase tracking-widest text-brand">A simple process</p>
+      <h2 class="mt-3 text-3xl sm:text-4xl font-bold tracking-tight">How it works</h2>
+      <p class="mt-3 text-ink/70 leading-7">Bring each stage of the project into a clear, shared workflow.</p>
+    </div>
     <ol class="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      <li class="p-5 bg-white rounded-lg border border-stone-200"><b class="text-brand text-2xl">01</b><h3 class="font-bold mt-1">Get a supervisor</h3><p class="text-sm text-ink/70 mt-1">The coordinator assigns you one.</p></li>
-      <li class="p-5 bg-white rounded-lg border border-stone-200"><b class="text-brand text-2xl">02</b><h3 class="font-bold mt-1">Submit your topic</h3><p class="text-sm text-ink/70 mt-1">Your supervisor reviews it and gives feedback.</p></li>
-      <li class="p-5 bg-white rounded-lg border border-stone-200"><b class="text-brand text-2xl">03</b><h3 class="font-bold mt-1">Work on milestones</h3><p class="text-sm text-ink/70 mt-1">Update progress and upload documents.</p></li>
-      <li class="p-5 bg-white rounded-lg border border-stone-200"><b class="text-brand text-2xl">04</b><h3 class="font-bold mt-1">Stay on track</h3><p class="text-sm text-ink/70 mt-1">See your status and act early if you fall behind.</p></li>
+      <li class="rounded-2xl border border-stone-200 bg-white p-5 sm:p-6"><b class="grid h-10 w-10 place-items-center rounded-xl bg-emerald-50 text-sm text-brand">01</b><h3 class="font-bold mt-4">Get a supervisor</h3><p class="text-sm leading-6 text-ink/70 mt-2">The coordinator assigns a supervisor to support your project.</p></li>
+      <li class="rounded-2xl border border-stone-200 bg-white p-5 sm:p-6"><b class="grid h-10 w-10 place-items-center rounded-xl bg-emerald-50 text-sm text-brand">02</b><h3 class="font-bold mt-4">Submit your topic</h3><p class="text-sm leading-6 text-ink/70 mt-2">Share your idea for review and receive feedback.</p></li>
+      <li class="rounded-2xl border border-stone-200 bg-white p-5 sm:p-6"><b class="grid h-10 w-10 place-items-center rounded-xl bg-emerald-50 text-sm text-brand">03</b><h3 class="font-bold mt-4">Work on milestones</h3><p class="text-sm leading-6 text-ink/70 mt-2">Follow deadlines, update progress and upload documents.</p></li>
+      <li class="rounded-2xl border border-stone-200 bg-white p-5 sm:p-6"><b class="grid h-10 w-10 place-items-center rounded-xl bg-emerald-50 text-sm text-brand">04</b><h3 class="font-bold mt-4">Stay informed</h3><p class="text-sm leading-6 text-ink/70 mt-2">Keep track of project status, feedback and notifications.</p></li>
     </ol>
   </section>
 
   <!-- Roles -->
   <section id="roles" class="bg-ink text-white">
-    <div class="max-w-6xl mx-auto px-4 py-14">
-      <h2 class="text-3xl font-bold">Made for three users</h2>
-      <div class="mt-8 grid md:grid-cols-3 gap-4">
-        <div class="p-5 rounded-lg bg-white/5 border border-white/10"><h3 class="font-bold text-lg">Student</h3><p class="mt-2 text-sm text-white/70">See your supervisor, submit topics, update milestones, upload documents and read feedback.</p></div>
-        <div class="p-5 rounded-lg bg-white/5 border border-white/10"><h3 class="font-bold text-lg">Supervisor</h3><p class="mt-2 text-sm text-white/70">Review topics, create milestones, monitor progress and give feedback to your students.</p></div>
-        <div class="p-5 rounded-lg bg-white/5 border border-white/10"><h3 class="font-bold text-lg">Project Coordinator</h3><p class="mt-2 text-sm text-white/70">Manage student and supervisor records, assign supervisors and view all projects.</p></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
+      <div class="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+        <div><p class="text-sm font-semibold uppercase tracking-widest text-emerald-300">One project team</p><h2 class="mt-2 text-2xl sm:text-3xl font-bold tracking-tight">Made for the people behind your project</h2></div>
+        <p class="max-w-md text-sm leading-6 text-white/70">A shared view that supports each role throughout the project lifecycle.</p>
       </div>
-      <button data-screen="login" class="mt-8 px-5 py-2 rounded bg-white text-ink font-medium hover:bg-stone-100">Login to get started</button>
+      <div class="mt-6 grid md:grid-cols-3 gap-3">
+        <article class="rounded-xl border border-white/15 bg-white/[0.07] p-4 sm:p-5">
+          <div class="flex items-center gap-3"><span class="grid h-10 w-10 place-items-center rounded-lg bg-emerald-300/15 text-emerald-200"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M16 19h5v-1a4 4 0 0 0-5.5-3.7M8 19H3v-1a4 4 0 0 1 5.5-3.7M8 19v-1a4 4 0 0 1 8 0v1m-2-12a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm7 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/></svg></span><h3 class="font-bold text-lg">Student</h3></div>
+          <p class="mt-3 text-sm leading-6 text-white/70">See your supervisor, submit topics, update milestones, upload documents and read feedback.</p>
+        </article>
+        <article class="rounded-xl border border-white/15 bg-white/[0.07] p-4 sm:p-5">
+          <div class="flex items-center gap-3"><span class="grid h-10 w-10 place-items-center rounded-lg bg-emerald-300/15 text-emerald-200"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7.4-3a7.4 7.4 0 0 0-.1-1.2l1.5-1.1-1.5-2.6-1.7.7a7.2 7.2 0 0 0-2-1.2L15.3 5h-3l-.3 1.8a7.2 7.2 0 0 0-2 1.2l-1.7-.7-1.5 2.6 1.5 1.1a7.4 7.4 0 0 0 0 2.4l-1.5 1.1 1.5 2.6 1.7-.7a7.2 7.2 0 0 0 2 1.2l.3 1.8h3l.3-1.8a7.2 7.2 0 0 0 2-1.2l1.7.7 1.5-2.6-1.5-1.1c.1-.4.1-.8.1-1.2z"/></svg></span><h3 class="font-bold text-lg">Supervisor</h3></div>
+          <p class="mt-3 text-sm leading-6 text-white/70">Review topics, create milestones, monitor progress and give feedback to your students.</p>
+        </article>
+        <article class="rounded-xl border border-white/15 bg-white/[0.07] p-4 sm:p-5">
+          <div class="flex items-center gap-3"><span class="grid h-10 w-10 place-items-center rounded-lg bg-emerald-300/15 text-emerald-200"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 20h16M6 20V8l6-4 6 4v12M9 10h.01M15 10h.01M9 14h.01M15 14h.01M10 20v-3h4v3"/></svg></span><h3 class="font-bold text-lg">Project Coordinator</h3></div>
+          <p class="mt-3 text-sm leading-6 text-white/70">Manage student and supervisor records, assign supervisors and view all projects.</p>
+        </article>
+      </div>
+      <button data-screen="login" class="mt-6 px-5 py-2.5 rounded-lg bg-white text-ink font-semibold hover:bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-ink">Login to get started</button>
     </div>
   </section>
 
-  <footer class="max-w-6xl mx-auto px-4 py-6 text-sm text-ink/60 flex flex-wrap justify-between gap-2">
-    <span>FYP Tracker, Department of Software Engineering</span><span>Final year project prototype</span>
+  <footer class="border-t border-stone-200 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 text-sm text-ink/60 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+      <span class="font-medium text-ink/70">FYP Tracker <span class="font-normal text-ink/50">· Department of Software Engineering</span></span><span>Final year project prototype</span>
+    </div>
   </footer>
 </div>
 
@@ -198,6 +280,10 @@
         <button class="btn w-full">Log in</button>
       </form>
       <div class="mt-6 text-sm text-ink/70 border-t border-stone-200 pt-4">
+        <p class="mb-2">New here? Register an account:</p>
+        <div class="flex flex-wrap gap-2"><button type="button" data-screen="register-student" class="btn-line !py-1 text-sm">Student registration</button><button type="button" data-screen="register-supervisor" class="btn-line !py-1 text-sm">Supervisor registration</button></div>
+        <p class="mt-3 text-xs text-ink/60">Prototype mode: accounts and records are stored in this browser only. Supabase is not connected.</p>
+        <div class="mt-4 border-t border-stone-200 pt-3">
         <p>Demo accounts (password: demo1234). Tap one to fill the form:</p>
         <div class="flex flex-wrap gap-2 mt-2">
           <button type="button" data-act="fill" data-e="coordinator@buk.edu.ng" class="btn-line !py-1 text-sm">Coordinator</button>
@@ -205,10 +291,50 @@
           <button type="button" data-act="fill" data-e="student@buk.edu.ng" class="btn-line !py-1 text-sm">Student</button>
         </div>
         <button data-act="reset" class="mt-3 text-xs underline">Reset demo data</button>
+        </div>
       </div>
     </div>
   </section>
 </div>
+</div>
+
+<div id="register-student" class="screen hidden">
+  <section class="min-h-screen p-6 md:p-12 flex flex-col justify-center">
+    <div class="w-full max-w-2xl mx-auto">
+      <div class="flex items-center justify-between gap-4 mb-6"><h1 class="text-2xl font-bold">Student registration</h1><button data-screen="login" class="btn-line text-sm">Back to login</button></div>
+      <p class="mb-5 text-sm text-ink/60">Registration creates a browser-stored prototype account. A Coordinator assigns your supervisor after registration.</p>
+      <form data-form="registerStudent" class="card grid sm:grid-cols-2 gap-3">
+        <label class="lbl">Full name<input name="name" required autocomplete="name" class="inp"></label>
+        <label class="lbl">Email address<input name="email" type="email" required autocomplete="email" class="inp"></label>
+        <label class="lbl">Password<input name="password" type="password" required minlength="8" autocomplete="new-password" class="inp"></label>
+        <label class="lbl">Gender<select name="gender" required class="inp"><option value="">Choose gender</option><option>Male</option><option>Female</option><option>Prefer not to say</option></select></label>
+        <label class="lbl">Registration number<input name="reg_number" required class="inp"></label>
+        <label class="lbl">Department<input name="department" required class="inp"></label>
+        <label class="lbl">Level<input name="level" required class="inp"></label>
+        <button class="btn sm:col-span-2">Create student account</button>
+      </form>
+    </div>
+  </section>
+</div>
+
+<div id="register-supervisor" class="screen hidden">
+  <section class="min-h-screen p-6 md:p-12 flex flex-col justify-center">
+    <div class="w-full max-w-2xl mx-auto">
+      <div class="flex items-center justify-between gap-4 mb-6"><h1 class="text-2xl font-bold">Supervisor registration</h1><button data-screen="login" class="btn-line text-sm">Back to login</button></div>
+      <p class="mb-5 text-sm text-ink/60">Your academic designation is separate from your system role. Registration creates a browser-stored prototype account.</p>
+      <form data-form="registerSupervisor" class="card grid sm:grid-cols-2 gap-3">
+        <label class="lbl">Full name<input name="name" required autocomplete="name" class="inp"></label>
+        <label class="lbl">Email address<input name="email" type="email" required autocomplete="email" class="inp"></label>
+        <label class="lbl">Password<input name="password" type="password" required minlength="8" autocomplete="new-password" class="inp"></label>
+        <label class="lbl">Gender<select name="gender" required class="inp"><option value="">Choose gender</option><option>Male</option><option>Female</option><option>Prefer not to say</option></select></label>
+        <label class="lbl">Staff ID<input name="staff_id" required class="inp"></label>
+        <label class="lbl">Department<input name="department" required class="inp"></label>
+        <label class="lbl">Academic designation<select name="designation" required class="inp"><option value="">Choose designation</option><option>Professor</option><option>Associate Professor</option><option>Senior Lecturer</option><option>Lecturer</option><option>Assistant Lecturer</option><option>Other</option></select></label>
+        <label id="custom-designation-wrap" class="lbl hidden">Specify designation<input name="custom_designation" class="inp"></label>
+        <button class="btn sm:col-span-2">Create supervisor account</button>
+      </form>
+    </div>
+  </section>
 </div>
 
 
@@ -257,45 +383,24 @@
     <section data-page="c-dash" class="hidden">
       <h1 class="h1">Dashboard</h1>
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
-        <div class="stat"><b id="n-students">0</b><span>Students</span></div>
-        <div class="stat"><b id="n-sups">0</b><span>Supervisors</span></div>
-        <div class="stat"><b id="n-assigned">0</b><span>Assigned</span></div>
+          <div class="stat"><b id="n-students">0</b><span>Total registered students</span></div>
+          <div class="stat"><b id="n-sups">0</b><span>Total registered supervisors</span></div>
+          <div class="stat"><b id="n-assigned">0</b><span>Students with active supervisor</span></div>
         <div class="stat"><b id="n-waiting">0</b><span>Waiting for a supervisor</span></div>
       </div>
       <div class="card"><h2 class="h2 mb-2">All projects</h2>
-        <div class="overflow-x-auto"><table class="tbl w-full text-sm"><thead><tr><th>Student</th><th>Supervisor</th><th>Topic</th><th>Progress</th></tr></thead><tbody id="c-projects"></tbody></table></div>
+        <div class="overflow-x-auto"><table class="tbl w-full text-sm"><thead><tr><th>Student</th><th>Assigned supervisor</th><th>Topic title</th><th>Topic review status</th><th>Project progress</th></tr></thead><tbody id="c-projects"></tbody></table></div>
       </div>
     </section>
 
     <section data-page="c-students" class="hidden">
       <h1 class="h1">Students</h1>
-      <div class="card">
-        <form data-form="addStudent" class="grid sm:grid-cols-2 gap-3">
-          <label class="lbl">Full name<input name="name" required class="inp"></label>
-          <label class="lbl">Email<input name="email" type="email" required class="inp"></label>
-          <label class="lbl">Temporary password<input name="password" type="password" required class="inp"></label>
-          <label class="lbl">Department<input name="department" required class="inp" value="Software Engineering"></label>
-          <label class="lbl">Registration number<input name="reg_number" required class="inp"></label>
-          <label class="lbl">Level<input name="level" required class="inp" value="400"></label>
-          <button class="btn sm:col-span-2">Add student</button>
-        </form>
-      </div>
-      <div class="card overflow-x-auto"><table class="tbl w-full text-sm"><thead><tr><th>Name</th><th>Reg. number</th><th>Department</th><th></th></tr></thead><tbody id="students-body"></tbody></table></div>
+      <div class="card overflow-x-auto"><table class="tbl w-full text-sm"><thead><tr><th>Full name</th><th>Registration number</th><th>Department</th><th>Level</th><th>Actions</th></tr></thead><tbody id="students-body"></tbody></table></div>
     </section>
 
     <section data-page="c-sups" class="hidden">
       <h1 class="h1">Supervisors</h1>
-      <div class="card">
-        <form data-form="addSupervisor" class="grid sm:grid-cols-2 gap-3">
-          <label class="lbl">Full name<input name="name" required class="inp"></label>
-          <label class="lbl">Email<input name="email" type="email" required class="inp"></label>
-          <label class="lbl">Temporary password<input name="password" type="password" required class="inp"></label>
-          <label class="lbl">Department<input name="department" required class="inp" value="Software Engineering"></label>
-          <label class="lbl">Staff ID<input name="staff_id" required class="inp"></label>
-          <button class="btn sm:col-span-2 self-end">Add supervisor</button>
-        </form>
-      </div>
-      <div class="card overflow-x-auto"><table class="tbl w-full text-sm"><thead><tr><th>Name</th><th>Staff ID</th><th>Department</th><th></th></tr></thead><tbody id="supervisors-body"></tbody></table></div>
+      <div class="card overflow-x-auto"><table class="tbl w-full text-sm"><thead><tr><th>Full name</th><th>Academic designation</th><th>Staff ID</th><th>Department</th><th>Actions</th></tr></thead><tbody id="supervisors-body"></tbody></table></div>
     </section>
 
     <section data-page="c-assign" class="hidden">
@@ -308,7 +413,10 @@
         </form>
       </div>
       <div class="card"><h2 class="h2 mb-2">Current assignments</h2>
-        <div class="overflow-x-auto"><table class="tbl w-full text-sm"><thead><tr><th>Student</th><th>Supervisor</th><th>Assigned</th><th></th></tr></thead><tbody id="assign-body"></tbody></table></div>
+        <div class="overflow-x-auto"><table class="tbl w-full text-sm"><thead><tr><th>Student</th><th>Supervisor</th><th>Assignment date</th><th>Actions</th></tr></thead><tbody id="assign-body"></tbody></table></div>
+      </div>
+      <div class="card"><h2 class="h2 mb-2">Assignment history</h2>
+        <div class="overflow-x-auto"><table class="tbl w-full text-sm"><thead><tr><th>Student</th><th>Registration number</th><th>Supervisor</th><th>Assigned</th><th>Ended</th></tr></thead><tbody id="assign-history-body"></tbody></table></div>
       </div>
     </section>
 
@@ -320,7 +428,7 @@
         <div class="stat"><b id="n-topics">0</b><span>Topics to review</span></div>
         <div class="stat"><b id="n-projects">0</b><span>Projects</span></div>
       </div>
-      <div class="card overflow-x-auto"><table class="tbl w-full text-sm"><thead><tr><th>Student</th><th>Topic</th><th>Progress</th></tr></thead><tbody id="s-students"></tbody></table></div>
+      <div class="card overflow-x-auto"><table class="tbl w-full text-sm"><thead><tr><th>Student</th><th>Registration number</th><th>Topic</th><th>Topic status</th><th>Project</th><th>Overall progress</th><th>Actual progress</th></tr></thead><tbody id="s-students"></tbody></table></div>
     </section>
 
     <section data-page="s-topics" class="hidden">
@@ -341,27 +449,31 @@
     <!-- ========== STUDENT ========== -->
     <section data-page="st-dash" class="hidden">
       <h1 class="h1" id="sd-welcome">Welcome</h1>
+      <div class="card"><div class="flex items-start justify-between gap-3"><h2 class="h2">My details</h2><button data-act="editOwnName" class="text-sm text-brand underline">Edit my name</button></div><div class="mt-3 grid sm:grid-cols-2 lg:grid-cols-5 gap-3 text-sm"><div><span class="text-ink/60">Email</span><p id="sd-email" class="break-all"></p></div><div><span class="text-ink/60">Gender</span><p id="sd-gender"></p></div><div><span class="text-ink/60">Registration number</span><p id="sd-reg"></p></div><div><span class="text-ink/60">Department</span><p id="sd-student-dept"></p></div><div><span class="text-ink/60">Level</span><p id="sd-level"></p></div></div></div>
       <div class="grid md:grid-cols-3 gap-4">
-        <div class="card mb-0"><div class="text-sm text-ink/60 mb-1">Supervisor</div><div class="h2" id="sd-sup"></div><div class="text-sm text-ink/60" id="sd-dept"></div></div>
+        <div class="card mb-0"><div class="text-sm text-ink/60 mb-1">Supervisor</div><div class="h2" id="sd-sup"></div><div class="text-sm text-ink/60" id="sd-designation"></div><div class="text-sm text-ink/60" id="sd-dept"></div></div>
         <div class="card mb-0"><div class="text-sm text-ink/60 mb-1">Latest topic</div><div class="font-medium mb-2" id="sd-topic"></div><div id="sd-topic-badge"></div></div>
         <div class="card mb-0"><div class="text-sm text-ink/60 mb-1">Project progress</div><div id="sd-prog-badge"></div>
-          <div class="mt-3 text-xs text-ink/60">Actual <span id="sd-actual-txt">0</span>%</div>
-          <div class="h-2 bg-stone-200 rounded"><div id="sd-actual-bar" class="h-2 rounded bg-brand" style="width:0%"></div></div>
-          <div class="mt-2 text-xs text-ink/60">Expected <span id="sd-exp-txt">0</span>%</div>
-          <div class="h-2 bg-stone-200 rounded"><div id="sd-exp-bar" class="h-2 rounded bg-stone-500" style="width:0%"></div></div>
+          <div id="sd-progress-metrics" class="hidden">
+            <div class="mt-3 text-xs text-ink/60">Actual <span id="sd-actual-txt">N/A</span></div>
+            <div class="h-2 bg-stone-200 rounded"><div id="sd-actual-bar" class="h-2 rounded bg-brand" style="width:0%"></div></div>
+            <div class="mt-2 text-xs text-ink/60">Expected <span id="sd-exp-txt">N/A</span></div>
+            <div class="h-2 bg-stone-200 rounded"><div id="sd-exp-bar" class="h-2 rounded bg-stone-500" style="width:0%"></div></div>
+          </div>
         </div>
       </div>
+      <div class="card mt-5"><h2 class="h2 mb-2">Project milestones</h2><div id="sd-milestones"></div></div>
     </section>
 
     <section data-page="st-topic" class="hidden">
       <h1 class="h1">My topic</h1>
       <div id="t-nosup" class="card hidden">Supervisor not yet assigned. You can submit a topic after the coordinator assigns one.</div>
       <div id="t-formcard" class="card hidden">
-        <h2 class="h2 mb-3">Submit a project topic</h2>
-        <form data-form="submitTopic" class="space-y-3">
+        <form id="t-submit-form" data-form="submitTopic" class="space-y-3">
+          <h2 id="t-form-title" class="h2 mb-3">Submit a project topic</h2>
           <label class="lbl">Topic title<input name="topic_title" required class="inp"></label>
           <label class="lbl">Short description<textarea name="description" rows="3" required class="inp"></textarea></label>
-          <button class="btn">Submit topic</button>
+          <button id="t-submit-button" class="btn">Submit topic</button>
         </form>
       </div>
       <div id="t-list"></div>
@@ -373,7 +485,7 @@
       <div id="w-content" class="hidden">
         <div class="card"><div class="flex flex-wrap justify-between gap-2 mb-2"><h2 class="h2" id="w-title"></h2><span id="w-badge"></span></div><div id="w-ms"></div></div>
         <div class="card"><h2 class="h2 mb-2">Documents</h2><div id="w-docs" class="mb-3"></div>
-          <form data-form="upload" class="flex flex-col sm:flex-row gap-3"><input type="file" name="file" required class="flex-1 text-sm"><button class="btn">Upload document</button></form>
+          <form data-form="upload" class="flex flex-col sm:flex-row gap-3"><input type="file" name="file" accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.jpeg,.png" required class="flex-1 text-sm"><button class="btn">Upload document (max 10 MB)</button></form>
         </div>
         <div class="card"><h2 class="h2 mb-2">Supervisor feedback</h2><div id="w-fb"></div></div>
       </div>
@@ -437,16 +549,16 @@
   </div>
 </template>
 
-<!-- One milestone. The slider part (data-edit) is kept only for students -->
+<!-- One milestone. Students can submit a percentage update. -->
 <template id="tpl-ms">
   <div class="py-3 border-t border-stone-100">
-    <div class="flex justify-between gap-2 text-sm"><b data-f="title"></b><span class="text-ink/60" data-f="due"></span></div>
+    <div class="flex flex-wrap justify-between gap-2 text-sm"><b data-f="title"></b><span data-badge="status"></span><span class="text-ink/60" data-f="due"></span></div>
     <div class="mt-2 h-2 bg-stone-200 rounded"><div class="h-2 rounded bg-brand" data-w="progress"></div></div>
     <div class="text-xs text-ink/60 mt-1" data-f="meta"></div>
-    <form data-edit data-form="setProgress" class="flex items-center gap-3 mt-2">
-      <input type="range" name="progress" min="0" max="100" step="5" class="flex-1" oninput="this.nextElementSibling.textContent=this.value+'%'">
-      <span class="w-10 text-sm"></span>
-      <button class="btn">Save</button>
+    <div data-slot="history"></div>
+    <form data-edit data-form="setProgress" class="flex flex-wrap items-end gap-3 mt-2">
+      <label class="lbl">Update progress (%)<input type="number" name="progress" min="0" max="100" step="1" required class="inp w-32"></label>
+      <button class="btn">Submit update</button>
     </form>
   </div>
 </template>
@@ -494,9 +606,9 @@
   function fail(name) {
     banner('<b>Could not find ' + name + '.</b> Put data.js and app.js in a folder named <b>js</b> next to index.html (or in the same folder). Open index.html on a computer, not from a chat preview.');
   }
-  load(['js/data.js', 'data.js'], function (ok) {
+  load(['data.js', 'js/data.js'], function (ok) {
     if (!ok) return fail('data.js');
-    load(['js/app.js', 'app.js'], function (ok2) { if (!ok2) fail('app.js'); });
+    load(['app.js', 'js/app.js'], function (ok2) { if (!ok2) fail('app.js'); });
   });
 })();
 </script>
